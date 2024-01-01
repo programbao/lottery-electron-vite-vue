@@ -89,9 +89,11 @@ async function createWindow() {
     },
   })
   // winState.manage(win);
-
   if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
-    win.loadURL(url)
+    win.loadURL(url).then(() => {
+      win.maximize();
+      win.show(); 
+    })
     // Open devTool if the app is not packaged
     win.webContents.openDevTools()
   } else {
