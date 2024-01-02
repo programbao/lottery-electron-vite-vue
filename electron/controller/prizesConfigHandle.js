@@ -14,7 +14,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // const isBuild = process.env.NODE_ENV === 'production'
 const isBuild = process.env.NODE_ENV !== 'development';
-const dbPath = path.join(__dirname, `${isBuild ? '../../../' : '../'}assets`)
+const dbPath = path.join(__dirname, `${isBuild ? '../../../' : '../../electron/'}assets`)
 import url from 'url';
 import fs from "fs";
 
