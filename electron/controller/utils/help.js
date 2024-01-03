@@ -5,7 +5,7 @@ import { dialog } from 'electron'
 import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const isBuild = process.env.NODE_ENV !== 'development';
-let cwd = path.join(__dirname,  `${isBuild ? '../../../../' : '../../electron/'}assets/json`);
+let cwd = path.join(__dirname,  `${isBuild ? '../../../' : '../../electron/'}assets/json`);
 if (!fs.existsSync(cwd)) {
   fs.mkdirSync(cwd);
 }
@@ -135,7 +135,7 @@ function writeXML(data, name) {
       data: data
     }
   ]);
-  let savePath = path.join(path.join(__dirname,  `${isBuild ? '../../../../' : '../../electron/'}assets/xlsx_write`), name)
+  let savePath = path.join(path.join(__dirname,  `${isBuild ? '../../../' : '../../electron/'}assets/xlsx_write`), name)
   return new Promise((resolve, reject) => {
     fs.writeFile(savePath, buffer, err => {
       if (err) {
