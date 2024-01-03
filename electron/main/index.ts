@@ -218,9 +218,15 @@ ipcMain.handle('open-win', (_, arg) => {
   })
 
   if (process.env.VITE_DEV_SERVER_URL) {
-    childWindow.loadURL(`${url}#${arg}`)
+    childWindow.loadURL(`${url}#${arg}`).then(() => {
+      win.maximize();
+      win.show(); 
+    })
   } else {
-    childWindow.loadFile(indexHtml, { hash: arg })
+    childWindow.loadFile(indexHtml, { hash: arg }).then(() => {
+      win.maximize();
+      win.show(); 
+    })
   }
 })
 app.on('ready', () => {
