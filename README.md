@@ -1,5 +1,7 @@
 # 一个前端开发的PC抽奖程序
 
+![封面截图](./readme-file/封面截图.png)
+
 ### 背景
 
 公司周年庆需要一个能够支撑60000+人的抽奖程序，原本通过找 [网页的开源项目](https://github.com/moshang-xc/lottery) 再定制化实现了效果，并成功运行再周年庆上；但是领导要求要能够在任何地方、任何人只要有一台电脑就能简单方便的定制自己的PC抽奖应用，所有就有了这么一个主题。
@@ -237,4 +239,5 @@ building block map  blockMapFile=release\28.0.0\YourAppName-Windows-28.0.0-Setup
 **总结：** 主打的要快速实现，所以这个离线pc抽奖程序还有很多问题，希望大家多多包容；
 
 最后附上github地址：https://github.com/programbao/lottery-electron-vite-vue
+使用指南： [抽奖程序指引](https://github.com/programbao/lottery-electron-vite-vue/blob/main/readme-file/抽奖程序指引.pdf)
 欢迎大家使用
