@@ -39,7 +39,7 @@
 
 ### 技术选型
 
-由于给的时间不多，能有现成的最好；最终根据定制实现的网页和现在可用js开发PC应用的框架以及最近较新的技术，最终选择下面的开源项目进行集成和修改。
+由于给的时间不多，能有现成的最好；最终选择下面的开源项目进行集成和修改。
 
 说明：由于之前没看到有electron-vite-vue这个项目，所有自己粗略了用vue3+vite+electron开发了 [抽奖程序](https://github.com/programbao/lottery-electron-vite) , 所以现在就是迁移项目的说明。
 
@@ -67,7 +67,7 @@ github开源项目
 
 <img src="./readme-file/目录结构.png" alt="目录结构" style="zoom:50%;" />
 
-#### IV 最后就是对[开源的网页抽奖项目](https://github.com/moshang-xc/lottery)进行大量的修改了，这里就不详细说了；因为变化太多了，一时半会想不起来。
+#### IV 最后就是对[开源的网页抽奖项目](https://github.com/moshang-xc/lottery)进行大量的修改了，这里就不详细说了；因为变化太多了，一时半会想不起来改了什么。
 
 ### 迁移项目
 
@@ -75,7 +75,7 @@ github开源项目
 
 <img src="./readme-file/静态资源.png" alt="静态资源" style="zoom: 50%;" />
 
-​		关于包资源说明，这边因为想做离线的软件，所有固定要使用的包保存到本地了；
+​		关于包资源说明，这边因为要做离线的软件，所以我把固定要使用的包保存到本地了；
 
 ##### 		1. 引入到index.html中
 
@@ -87,7 +87,7 @@ github开源项目
 
 #### II 迁移electron代码
 
-说明：由于我之前写的一版代码是用js而不是ts，如果一下子全改为ts需要一些时间；所有嫌麻烦，我直接引用js文件以及类型报错全部改为any了，后期有时间可以再优化一下。
+说明：由于我之前写的一版代码是用js而不是ts，如果一下子全改为ts需要一些时间；所以嫌麻烦，我直接引用js文件了，后期有时间可以再优化一下。
 
 ![功能代码调整](./readme-file/功能代码调整.png)
 
@@ -97,7 +97,7 @@ github开源项目
 
 ​		![问题一](./readme-file/问题一.png)
 
-​	这个是因为 我之前的项目一直是用require 引入的；所有要把里面用到require都改为import引入方式；但是在preload.ts里面不能用ESM导入的形式，会报语法错误，要用回require导入。
+​	这个是因为 我之前的项目一直是用require 引入的；所以要把里面用到require都改为import引入方式；（在preload.ts里面不能用ESM导入的形式，会报语法错误，要用回require导入）
 
 ​	问题二：
 
@@ -178,7 +178,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 ![打包-js报错](./readme-file/打包-js报错.png)
 
-这里说明一下；由于本人懒不行有特意把原本js文件的代码 改为ts；要快速迁移项目 所以直接使用了js；导致打包报错了，所以需要再 tsconfig.json配置一下才行
+这里再次说明一下；由于本人懒得把原本js文件的代码 改为ts；要快速迁移项目 所以直接使用了js；导致打包报错了，所以需要再 tsconfig.json配置一下才行：
 
 ```json
   "compilerOptions": {
@@ -204,7 +204,6 @@ building block map  blockMapFile=release\28.0.0\YourAppName-Windows-28.0.0-Setup
     "win": {
        "icon": "electron/controller/data/img/lottery_icon.ico", // ico保存的位置
      },
-     "nsi
    ```
 
 #### III 打包后运行；资源路径报错了
@@ -213,7 +212,7 @@ building block map  blockMapFile=release\28.0.0\YourAppName-Windows-28.0.0-Setup
 
 ![打包后资源路径查询不到](./readme-file/打包后资源路径查询不到.png)
 
-由于上面的原因，需要把程序读写的文件目录暴露出来；
+由于上面的原因，需要把程序涉及读写的文件目录暴露出来；
 
 ```javascript
 1. 在构建配置中加入如下配置，将应用要读写的文件目录暴露出来
@@ -237,7 +236,7 @@ building block map  blockMapFile=release\28.0.0\YourAppName-Windows-28.0.0-Setup
 
 
 
-**总结：**主打的要快速实现，所有这个离线pc抽奖程序还有很多问题，希望大家多多包容；
+**总结：** 主打的要快速实现，所以这个离线pc抽奖程序还有很多问题，希望大家多多包容；
 
 最后附上github地址：https://github.com/programbao/lottery-electron-vite-vue
 欢迎大家使用
