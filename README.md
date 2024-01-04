@@ -166,9 +166,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 #### IV 一个流程下来
 
-<video src="./readme-file/一个流程-视频.mp4"></video>
-
-
+![待使用-删除帧后-运行抽奖一个流程动画-gif](./readme-file/待使用-删除帧后-运行抽奖一个流程动画-gif.gif)
 
 
 
@@ -232,7 +230,7 @@ building block map  blockMapFile=release\28.0.0\YourAppName-Windows-28.0.0-Setup
 
 ### 最后打包成功，运行项目
 
-<video src="./readme-file/一个完整流程2-视频.mp4"></video>
+![删除帧后-一个完整的流程-gif](./readme-file/删除帧后-一个完整的流程-gif.gif)
 
 
 
