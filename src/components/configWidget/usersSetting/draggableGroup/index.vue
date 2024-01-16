@@ -167,6 +167,8 @@ onMounted(() => {
     handleOptionList()
     // 初始化处理关联关系
     groupList.value.forEach((group) => {
+      // 初始化人员映射
+      userRelatedMap[group.group_identity] = basicData.memberListData[group.group_identity] || []
       group.options.forEach((identity) => {
         const option = optionList.value.find(
           (item) => item.option_identity === identity
@@ -321,9 +323,9 @@ const groupCancel = (emitObj) => {
 // 编辑人员名单
 const editGroupBtn = (groupInfo) => {
   // debugger
-  usersTableDialogVisible.value = true
   currentEidtGroup = groupInfo
   usersTableData.value = userRelatedMap[groupInfo.group_identity]
+  usersTableDialogVisible.value = true;
 }
 // 编辑完人员 确认回调
 const modifyUsersMap = {}

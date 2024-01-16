@@ -1,6 +1,6 @@
 {
-  "name": "electron-vue-vite",
-  "version": "28.0.0",
+  "name": "pc-lottery",
+  "version": "28.0.1",
   "main": "dist-electron/main/index.mjs",
   "description": "Really simple Electron + Vue + Vite boilerplate.",
   "author": "草鞋没号 <308487730@qq.com>",
