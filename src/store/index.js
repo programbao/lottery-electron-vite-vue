@@ -670,6 +670,16 @@ export const lotteryDataStore = defineStore('LOTTERY', {
           defaultText: '',
           chineseText: '已在中奖名单，不可取消关联',
           otherLanguagesText: ''
+        },
+        includeTextUsers: {
+          defaultText: '',
+          chineseText: '临时添加人员',
+          otherLanguagesText: ''
+        },
+        excludeTextUsers: {
+          defaultText: '',
+          chineseText: '排除人员',
+          otherLanguagesText: ''
         }
       },
       ballConfig: {

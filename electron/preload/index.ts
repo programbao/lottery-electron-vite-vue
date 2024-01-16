@@ -149,6 +149,11 @@ const handleExportData = async (...args) => {
   return result
 }
 
+// 处理人员名单修改
+const ajustModifyUsersTable = async (...args) => {
+  let result = await ipcRenderer.invoke('ajustModifyUsersTable', ...args)
+  return result
+}
 // 全屏切换
 const toggleFullScreen = async (...args) => {
   let result = await ipcRenderer.invoke('toggleFullScreen', ...args)
@@ -183,6 +188,7 @@ contextBridge.exposeInMainWorld('myApi', {
   resetOneRoundLuckyData,
   saveOneRoundLuckyData,
   handleExportData,
+  ajustModifyUsersTable,
   toggleFullScreen,
   importFile,
   savePrizesConfig,

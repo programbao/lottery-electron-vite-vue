@@ -12,6 +12,8 @@ import {
   saveDataFile,
   shuffle,
   saveErrorDataFile,
+  saveExistenceXML,
+  getExcelHeader
 } from "./utils/help"
 import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -167,6 +169,27 @@ const handleExportData = async () => {
   })
 }
 
+// 修改人员名单
+const ajustModifyUsersTable = async () => {
+  ipcMain.handle('ajustModifyUsersTable', async (e, ...args) => {
+    let result = {};
+    try {
+      const data = JSON.parse(args[0]);
+      const group = data.group
+      const userData = data.userData
+      let outData = [getExcelHeader(group.savePath)];
+      outData = outData.concat(userData || []);
+      await saveExistenceXML(outData, group.group_name, group.savePath)
+      // result = await hanldeExportDataFn();
+    } catch (error) {
+      console.log(error, '2348092384')
+      return false
+    }
+    return result; 
+  }) 
+}
+
+
 const dbPath = path.join(__dirname,  `${isBuild ? '../../../' : '../electron/'}assets/xlsx_write`)
 
 const readExcelFilesInDirectory = () => {
@@ -244,6 +267,7 @@ export {
   setData,
   resetData,
   handleExportData,
+  ajustModifyUsersTable,
   resetOneRoundLuckyData,
   saveOneRoundLuckyData,
   getSaveExcelFileInfoList,

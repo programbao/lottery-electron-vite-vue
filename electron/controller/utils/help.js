@@ -118,6 +118,23 @@ function loadXML(xmlPath) {
   outData = outData.filter(item => item.length > 0);
   return outData;
 }
+
+// 获取xlsx表头
+function getExcelHeader(xmlPath) {
+  let userData = []
+  try {
+    userData = xlsx.parse(xmlPath);
+  } catch (error) {
+    return {
+      type: "error",
+      msg: "找不到文件，文件丢失"
+    }
+  }
+  xlsx.parse(xmlPath);
+  let excelHeader = userData[0].data.shift();
+  return excelHeader
+}
+
 function sanitizeSheetName(name) {
   // 移除特殊字符
   return name.replace(/[:\\\/\?\*\[\]]/g, '');
@@ -146,7 +163,25 @@ function writeXML(data, name) {
     });
   });
 }
-
+// 根据已有的xlsx保存已存在的文件
+function saveExistenceXML(data, name, savePath) {
+  let buffer = xlsx.build([
+    {
+      name: name,
+      data: data
+    }
+  ]);
+  // let savePath = path.join(path.join(__dirname,  `${isBuild ? '../../../' : '../../electron/'}assets/xlsx_write`), name)
+  return new Promise((resolve, reject) => {
+    fs.writeFile(savePath, buffer, err => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve(savePath);
+    });
+  });
+}
 /**
  * 写入文件
  * @param {*} data
@@ -212,5 +247,7 @@ export {
   shuffle,
   writeXML,
   saveDataFile,
-  saveErrorDataFile
+  saveErrorDataFile,
+  saveExistenceXML,
+  getExcelHeader
 };

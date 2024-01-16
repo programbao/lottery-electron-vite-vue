@@ -72,6 +72,7 @@ const handleVerifyConfig = async (handleStr, verifyData) => {
     };
   }
   const isPass = await myApi.savePrizesConfig(verifyConfigStr, handleStr);
+
   if (isPass) {
     let isEmptyGroupList = !basicData.groupList.length
     basicData[handleStr] = JSON.parse(verifyConfigStr);

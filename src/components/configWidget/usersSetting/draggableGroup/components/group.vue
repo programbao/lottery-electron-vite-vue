@@ -34,7 +34,7 @@
               <div
                 v-html="getCurrentOption(optionsMap[identity]).option_value_html || getCurrentOption(optionsMap[identity]).option_value"
               />
-              <el-icon 
+              <el-icon
                 v-if="!getCurrentOption(optionsMap[identity]).noCanSelected"
                 @click.stop="closeOptionBtn({option: getCurrentOption(optionsMap[identity]), groupIdentity: groupInfo.group_identity})" class="close-icon"><CircleCloseFilled /></el-icon>
             </div>
@@ -52,6 +52,11 @@
           <el-icon :size="20"><Warning /></el-icon> 
         </el-tooltip>
       </div>
+      <!-- 编辑按钮 -->
+      <el-icon 
+        @click.stop="editGroupBtn"
+        :size="20" 
+        class="edit-icon"><Edit /></el-icon>
       <!-- 关闭按钮 -->
       <el-icon 
         class="close-btn" 
@@ -104,6 +109,9 @@ const closeOptionBtn = (emitObj) => {
 }
 const closeGroupBtn = () => {
   emit('groupCancel', props.groupInfo)
+}
+const editGroupBtn = () => {
+  emit('editGroupBtn', props.groupInfo)
 }
 const getCurrentOption = (option) => {
   const obj = option || {}
@@ -249,6 +257,13 @@ const getCurrentOption = (option) => {
         }
       }
     }
+  }
+  .edit-icon {
+    position: absolute;
+    right: 40px;
+    top: 0;
+    transform: translate(50%, -50%);
+    cursor: pointer;
   }
   .close-btn {
     position: absolute;

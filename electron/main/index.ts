@@ -11,7 +11,7 @@ const __dirname = dirname(__filename)
 import openDialog from '../controller/openDialog'
 import { getTempData } from '../controller/getTempData'
 import { getStaticUsersData, setData, resetData, resetOneRoundLuckyData, 
-  saveOneRoundLuckyData, handleExportData, getSaveExcelFileInfoList, 
+  saveOneRoundLuckyData, handleExportData, ajustModifyUsersTable, getSaveExcelFileInfoList, 
   openFileOrFolder } from '../controller/dataHandle'
 import { toggleFullScreen, savePrizesConfig, openDevTools } from '../controller/systemEventHandle'
 import { importFile } from '../controller/prizesConfigHandle'
@@ -166,6 +166,9 @@ async function createWindow() {
 
   // 处理数据导出
   handleExportData();
+
+  //  修改人员名单
+  ajustModifyUsersTable();
 
   // 全屏切换
   toggleFullScreen();

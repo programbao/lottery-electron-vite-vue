@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     v-model="dialogVisible"
-    width="50%"
+    :width="width"
     class="lt-dialog dialog level-dialog"
     :close-on-click-modal="false"
     :show-close="false">
@@ -36,6 +36,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  width: {
+    type: String,
+    default: '50%'
+  }
 });
 const emit = defineEmits(['close']);
 const dialogVisible = computed({
