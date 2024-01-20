@@ -239,5 +239,4 @@ building block map  blockMapFile=release\28.0.0\YourAppName-Windows-28.0.0-Setup
 **总结：** 主打的要快速实现，所以这个离线pc抽奖程序还有很多问题，希望大家多多包容；
 
 最后附上github地址：https://github.com/programbao/lottery-electron-vite-vue
-使用指南： [抽奖程序指引](https://github.com/programbao/lottery-electron-vite-vue/blob/main/readme-file/抽奖程序指引.pdf)
 欢迎大家使用
