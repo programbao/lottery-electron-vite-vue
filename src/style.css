@@ -73,6 +73,9 @@ code {
   text-align: center;
 }
 
+.introjs-tooltipReferenceLayer * {
+  color: #000;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

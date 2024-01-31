@@ -952,6 +952,7 @@ onBeforeUnmount(() => {
       align-items: center;
     }
     .title-btn {
+      color: #000;
       font-size: 14px;
       display: inline-flex;
       cursor: pointer;
