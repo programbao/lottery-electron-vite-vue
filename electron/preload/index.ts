@@ -94,7 +94,10 @@
 
 
 // 通信方法 
-const { contextBridge, ipcRenderer } =  require('electron')
+// const { contextBridge, ipcRenderer } =  require('electron')
+import { ipcRenderer, contextBridge } from 'electron'
+
+// --------- Expose some API to the Renderer process ---------
 
 const openDialog = async (data) => {
   let result = await ipcRenderer.invoke('open-dialog', data)
@@ -177,9 +180,28 @@ const openDevTools = async (...args) => {
   let result = await ipcRenderer.invoke('openDevTools', ...args)
   return result
 }
+// `exposeInMainWorld` can't detect attributes and methods of `prototype`, manually patching it.
+function withPrototype(obj: Record<string, any>) {
+  const protos = Object.getPrototypeOf(obj)
+
+  for (const [key, value] of Object.entries(protos)) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) continue
+
+    if (typeof value === 'function') {
+      // Some native APIs, like `NodeJS.EventEmitter['on']`, don't work in the Renderer process. Wrapping them into a function.
+      obj[key] = function (...args: any) {
+        return value.call(obj, ...args)
+      }
+    } else {
+      obj[key] = value
+    }
+  }
+  return obj
+}
 
 // 暴露electron处理函数 渲染进程和主进程通信
-contextBridge.exposeInMainWorld('myApi', {
+// contextBridge.exposeInMainWorld('myApi', )
+contextBridge.exposeInMainWorld('myApi', withPrototype({
   openDialog,
   getTempData,
   getStaticUsersData,
@@ -195,4 +217,4 @@ contextBridge.exposeInMainWorld('myApi', {
   openDevTools,
   getSaveExcelFileInfoList,
   openFileOrFolder
-})
+}))
