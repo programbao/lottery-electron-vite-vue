@@ -53,7 +53,7 @@ const importFile = () => {
 
         const filePath = res.filePaths[0]
     
-        const fileName = path.basename(filePath)
+        const fileName = new Date().getTime() + '_' + path.basename(filePath)
         const destPath = path.join(dbPath, saveType, fileName)
         const saveFolderPath = path.join(dbPath, saveType);
         let users;
