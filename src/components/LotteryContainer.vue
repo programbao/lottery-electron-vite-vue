@@ -727,6 +727,7 @@ const resetBtnClick = async () => {
   basicData.isContinueLottery = false
   basicData.isEnterLottery = false
   // 人员名单重置
+  await basicData.resetOriginMemberListData();
   basicData.memberListData  = JSON.parse(JSON.stringify(basicData.originMemberListData));
   // document.getElementById("container").classList.remove('slide-in-fwd-center');
   // document.querySelector('.screen-card').style.display = 'grid'

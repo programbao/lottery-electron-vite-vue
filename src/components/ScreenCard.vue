@@ -9,6 +9,7 @@
      >
       <div 
         v-for="index in totalCard"
+        :key="index"
         :id="'card-' + index" 
         class="element" 
         :style="{

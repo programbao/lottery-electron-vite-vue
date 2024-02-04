@@ -189,8 +189,12 @@ const ajustModifyUsersTable = async () => {
   }) 
 }
 
-
-const dbPath = path.join(__dirname,  `${isBuild ? '../../../' : '../electron/'}assets/xlsx_write`)
+let isMac = process.platform == 'darwin'
+let runPath = isBuild ? '../../../' : '../electron/'
+if (isMac) {
+  runPath = isBuild ? '../../../' : '../../electron/'
+}
+const dbPath = path.join(__dirname,  `${runPath}assets/xlsx_write`)
 
 const readExcelFilesInDirectory = () => {
   const files = fs.readdirSync(dbPath); // 读取目录下所有文件和文件夹
@@ -227,6 +231,7 @@ const getSaveExcelFileInfoList = async () => {
 // 打开目录或文件
 let usersTemplatePath = path.join(__dirname, `${isBuild ? '../../../' : '../../electron/'}assets/xlsx_read/users_template.xlsx`);
 const destPath = path.join(path.join(__dirname, `${isBuild ? '../../../' : '../../electron/'}assets/xlsx_write`), 'users_template.xlsx')
+
 const openFileOrFolder = async (data) => {
   ipcMain.handle('openFileOrFolder', async (e, ...args) => {
     let isOpen = false;
@@ -243,7 +248,11 @@ const openFileOrFolder = async (data) => {
     try {
       if (filePath === "users_template") {
         fs.copyFileSync(usersTemplatePath, destPath)
-        filePath = url.pathToFileURL(destPath).href
+        if (!isMac) {
+          filePath = url.pathToFileURL(destPath).href
+        } else {
+          filePath = destPath;
+        }
       }
       try {
         resultObj.isPass = await shell.openPath(filePath)

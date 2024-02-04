@@ -804,6 +804,11 @@ export const lotteryDataStore = defineStore('LOTTERY', {
 
       bus.emit('initConfigDataEnd')
       return this
+    },
+
+    async resetOriginMemberListData () {
+      const usersData = await myApi.getStaticUsersData();
+      this.originMemberListData = usersData;
     }
   }
 })

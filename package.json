@@ -1,6 +1,6 @@
 {
   "name": "pc-lottery",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist-electron/main/index.js",
   "description": "Really simple Electron + Vue + Vite boilerplate.",
   "author": "programbao",
@@ -23,6 +23,7 @@
   "scripts": {
     "dev": "vite && cross-env NODE_ENV=development",
     "build": "vue-tsc --noEmit && vite build && electron-builder",
+    "build:mac": "vue-tsc --noEmit && vite build && electron-builder --mac",
     "preview": "vite preview"
   },
   "dependencies": {
