@@ -684,6 +684,17 @@ let keyDownOpen = false
 let keyDownTimer = null;
 const keydownEvent = (event) => {
   if (['Enter', 'b', 'B', ' ', 'PageDown', 'PageUp'].indexOf(event.key) > -1) {
+    let overlayDoms = document.querySelectorAll('.el-overlay');
+    // 如果有display不是none的话 就return
+    if (overlayDoms && overlayDoms.length > 0) {
+      for (let i = 0; i < overlayDoms.length; i++) {
+        let itemDom = overlayDoms[i];
+        if (itemDom && itemDom.style.display !== 'none') {
+          console.warn('有弹窗显示，不处理')
+          return
+        }
+      }
+    }
     if (keyDownOpen) {
       clearTimeout(keyDownTimer)
       keyDownTimer = setTimeout(() => {
