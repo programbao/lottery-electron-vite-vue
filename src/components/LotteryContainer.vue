@@ -738,6 +738,7 @@ const resetBtnClick = async () => {
   initHandleData();
   bus.emit('resetPrizes');
   await myApi.resetData();
+  bus.emit("allStatusResetCompelted")
   rotateObj && rotateObj.stop();
 }
 // 移除当前中奖人员

@@ -1,6 +1,6 @@
 {
   "name": "pc-lottery",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist-electron/main/index.js",
   "description": "Really simple Electron + Vue + Vite boilerplate.",
   "author": "programbao",

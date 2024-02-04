@@ -282,6 +282,9 @@ const optionCancel = (emitObj) => {
   const handleOption = optionList.value.find(
     (item) => item.option_identity === option.option_identity
   )
+  if (!handleOption) {
+    return
+  }
   handleOption.related_group = ''
   handleOption.isSelected = false
 
@@ -304,7 +307,7 @@ const groupCancel = (emitObj) => {
     for (let i = 0; i < emitObj.options.length; i++) {
       const option_identity = emitObj.options[i]
       const option = optionsMap.value[option_identity]
-      if (option.noCanSelected) {
+      if (option && option.noCanSelected) {
         ElMessage({
           type: 'error',
           message: `${option.option_value} 已经产生数中奖名单，该人员名单不能删除`
@@ -315,7 +318,7 @@ const groupCancel = (emitObj) => {
     // 取消选项关联状态
     const handleGroup = groupList.value[groupIndex]
     handleGroup.options.forEach((identity) => {
-      optionsMap.value[identity].related_group = ''
+      optionsMap.value[identity] && (optionsMap.value[identity].related_group = '')
     })
     groupList.value.splice(groupIndex, 1)
   }

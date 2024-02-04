@@ -189,7 +189,7 @@ const groupListSetting = () => {
   }
 }
 bus.on('handleBeforeLotteryLayoutSetting', toAnimate)
-bus.on('resetBtnClick', toAnimate)
+bus.on('allStatusResetCompelted', toAnimate)
 bus.on('groupListSetting', groupListSetting)
 bus.on('adjuctScreenCardDisplay', adjuctScreenCardDisplay)
 bus.on('adjuctUsersDataTips', groupListSetting)
