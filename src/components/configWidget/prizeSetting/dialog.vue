@@ -185,7 +185,17 @@ const handlePrizesSetting = async () => {
       }
     }
     if (findCorrectIndex < 0 || findCorrectIndex) {
-      findCorrectIndex = prizes.length - 1;
+      let prizesNeedCorrectIndex = prizes.length - 1;
+      while (prizesNeedCorrectIndex - findCorrectIndex && findCorrectIndex >= 0) {
+        const item = prizes[prizesNeedCorrectIndex];
+        const count = item.count - (!basicData.luckyUsers[item.type] ? 0 : basicData.luckyUsers[item.type].length)
+        if (count <= 0) {
+          prizesNeedCorrectIndex--
+        } else {
+          findCorrectIndex = prizesNeedCorrectIndex
+          break;
+        }
+      }
     }
     basicData.currentPrizeIndex = findCorrectIndex;
     basicData.lastTimePrizeIndex = prizes[findCorrectIndex + 1] ? findCorrectIndex + 1 : findCorrectIndex
@@ -268,11 +278,13 @@ const checkAllPassStatus = (...statuses) => {
 };
 
 const confirm = async () => {
-  window.operationLogTable.add({
-    id: nanoid(),
-    date: dayjs().format("YYYY-MM-DD HH:mm:ss:SSS"),
-    type: 'setting',
-    value: textMappingConfig.value.prizeConfiguration.chineseText + ' ' + textMappingConfig.value.prizeConfiguration.otherLanguagesText
+  setTimeout(() => {
+    window.operationLogTable.add({
+      id: nanoid(),
+      date: dayjs().format("YYYY-MM-DD HH:mm:ss:SSS"),
+      type: 'setting',
+      value: textMappingConfig.value.prizeConfiguration.chineseText + ' ' + textMappingConfig.value.prizeConfiguration.otherLanguagesText
+    })
   })
   const prizeSettingPass = await handlePrizesSetting();
   const prizesBarStylePass = await handleVerifyConfig('prizesBarStyle', prizeSettingRef.value['prizesBarStyle']);

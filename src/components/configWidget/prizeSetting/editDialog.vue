@@ -82,14 +82,14 @@
         可选择一个奖项，同步相同配置
         <el-button type="primary" plain @click="clearSelect">清空</el-button>
       </div>
-      <div class="prizes" v-if="prizes.length">
+      <div class="prizes" v-if="canShowPrize.length">
         <div 
           class="prize"
           :class="{
             action: index === selectedPrizeIndex
           }"
           @click="prizeClick(item, index)"
-          v-for="(item, index) in prizes" :key="index">
+          v-for="(item, index) in canShowPrize" :key="index">
           {{ item.name }} 
         </div>
       </div>
@@ -126,6 +126,17 @@ const props = defineProps({
     required: true
   }
 });
+let canShowPrize = computed(() => {
+  try {
+    if (props.prizes) {
+      let handlePrizes = JSON.parse(JSON.stringify(props.prizes))
+      handlePrizes = handlePrizes?.filter(someData => (groupList.find(item => item.options?.includes(someData.type)) || null)) || []
+      return handlePrizes;
+    }
+  } catch (error) {
+  }
+  return []
+})
 const ruleFormRef = ref()
 const emit = defineEmits(['close', 'confirm']);
 const dialogVisible = computed({

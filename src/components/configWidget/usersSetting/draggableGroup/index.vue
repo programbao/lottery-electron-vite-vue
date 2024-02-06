@@ -233,7 +233,7 @@ const onGroupClick = ({ group, index }) => {
       item.isSelected = false
     }
     item.options = item.options.filter(
-      (identity) => optionsMap.value[identity].related_group
+      (identity) => optionsMap.value[identity]?.related_group
     )
   })
   group.isSelected = !group.isSelected
@@ -279,21 +279,28 @@ const confirmRelated = () => {
 // 取消选择/关联
 const optionCancel = (emitObj) => {
   const { option, groupIdentity } = emitObj
-  const handleOption = optionList.value.find(
+  let handleOption = optionList.value.find(
     (item) => item.option_identity === option.option_identity
-  )
+  );
   if (!handleOption) {
-    return
+    if (option.error_identity) {
+      handleOption = {
+        option_identity: option.error_identity
+      }
+    } else {
+      return
+    }
+  } else {
+    handleOption.related_group = ''
+    handleOption.isSelected = false
   }
-  handleOption.related_group = ''
-  handleOption.isSelected = false
 
   const group = groupList.value.find(
     (item) => item.group_identity === groupIdentity
   )
   if (group) {
     group.options = group.options.filter(
-      (identity) => identity !== option.option_identity
+      (identity) => identity !== (option.option_identity || option.error_identity)
     )
   }
 }

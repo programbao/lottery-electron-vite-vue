@@ -36,7 +36,7 @@
               />
               <el-icon
                 v-if="!getCurrentOption(optionsMap[identity]).noCanSelected"
-                @click.stop="closeOptionBtn({option: getCurrentOption(optionsMap[identity]), groupIdentity: groupInfo.group_identity})" class="close-icon"><CircleCloseFilled /></el-icon>
+                @click.stop="closeOptionBtn({option: getCurrentOption(optionsMap[identity], !optionsMap[identity] ? identity : undefined), groupIdentity: groupInfo.group_identity})" class="close-icon"><CircleCloseFilled /></el-icon>
             </div>
             </div>
           </template>
@@ -113,8 +113,10 @@ const closeGroupBtn = () => {
 const editGroupBtn = () => {
   emit('editGroupBtn', props.groupInfo)
 }
-const getCurrentOption = (option) => {
-  const obj = option || {}
+const getCurrentOption = (option, identity) => {
+  const obj = option || {
+    error_identity: identity
+  }
   return obj
 }
 </script>

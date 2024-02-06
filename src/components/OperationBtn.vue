@@ -684,6 +684,8 @@ let keyDownOpen = false
 let keyDownTimer = null;
 const keydownEvent = (event) => {
   if (['Enter', 'b', 'B', ' ', 'PageDown', 'PageUp'].indexOf(event.key) > -1) {
+    // 阻止默认事件行为
+    event && event.preventDefault && event.preventDefault();
     let overlayDoms = document.querySelectorAll('.el-overlay');
     // 如果有display不是none的话 就return
     if (overlayDoms && overlayDoms.length > 0) {
