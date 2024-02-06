@@ -439,7 +439,7 @@ const beginLottery = (e, btnTxt) => {
     })
     return
   }
-  if (basicData.isAnimating) {
+  if (basicData.isAnimating && btnTxt !== textMappingConfig.value.lotteryEnd.chineseText) {
     toast.info(`请等待动画加载完成  harap tunggu hingga animasi dimuat`, { 
       timeout: 2000
     });

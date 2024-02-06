@@ -190,10 +190,10 @@ const ajustModifyUsersTable = async () => {
 }
 
 let isMac = process.platform == 'darwin'
-let runPath = isBuild ? '../../../' : '../electron/'
-if (isMac) {
-  runPath = isBuild ? '../../../' : '../../electron/'
-}
+let runPath = isBuild ? '../../../' : '../../electron/'
+// if (isMac) {
+//   runPath = isBuild ? '../../../' : '../../electron/'
+// }
 const dbPath = path.join(__dirname,  `${runPath}assets/xlsx_write`)
 
 const readExcelFilesInDirectory = () => {

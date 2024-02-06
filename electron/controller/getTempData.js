@@ -54,6 +54,7 @@ const getLeftUsers = (notRepeatForAllUser = true) => {
     luckyData,
     errorData,
     curData,
+    lotteredUser
     // leftUsers
   }
 }
@@ -79,12 +80,13 @@ const getTempData = () => {
     if (sharedObject.cfg.otherResource && sharedObject.cfg.otherResource.musicFile && !sharedObject.cfg.otherResource.musicFile.fileUrl) {
       sharedObject.cfg.otherResource.musicFile.fileUrl = url.pathToFileURL(path.join(dbPath, 'music.mp3')).href
     }
-    const { luckyData, errorData, curData, leftUsers } = getLeftUsers();
+    const { luckyData, errorData, curData, leftUsers, lotteredUser } = getLeftUsers();
     return {
       prizeConfig: sharedObject.cfg,
       // leftUsers: leftUsers,
       curData,
-      luckyData: luckyData
+      luckyData: luckyData,
+      lotteredUser
     }; 
   })
 }

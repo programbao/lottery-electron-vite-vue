@@ -391,6 +391,24 @@ const cheatingUser = () => {
     console.error(error);
   }
 }
+
+// 记录中奖人员 boolean值
+const getLotteredUserMap = () => {
+  let map = {};
+  let luckyUsers = basicData.luckyUsers;
+  try {
+    Object.keys(luckyUsers).forEach(type => {
+      if (luckyUsers[type]) {
+        luckyUsers[type].forEach(user => {
+          map[user[0]] = true
+        })
+      }
+    });
+  } catch (error) {
+    console.error(error) 
+  }
+  return map 
+}
 /**
  * 抽奖
  */
@@ -412,14 +430,23 @@ const lottery = () => {
       perCount = leftCount
       return
     }
+    let lotteredUserMap = getLotteredUserMap();
     for (let i = 0; i < perCount; i++) {
       let luckyId = random(leftCount);
-      let getLuckyObj = paramsFields.member.splice(luckyId, 1)[0]
-      basicData.currentLuckys.push(getLuckyObj);
+      let getLuckyObj = paramsFields.member.splice(luckyId, 1)[0];
+      // 谨慎处理 - 判断是否有重复的；有的话 要处理掉  避免出现重复中奖名单
+      while (getLuckyObj && getLuckyObj[0] && lotteredUserMap[getLuckyObj[0]]) {
+        luckyId = random(leftCount);
+        getLuckyObj = paramsFields.member.splice(luckyId, 1)[0];
+      }
+      getLuckyObj && getLuckyObj[0] && (lotteredUserMap[getLuckyObj[0]] = true)
+      getLuckyObj && getLuckyObj[0] && basicData.currentLuckys.push(getLuckyObj);
       // 让存在的dom隐藏
-      let bindUserDom = document.querySelector(`.bind-user-${getLuckyObj[0]}`)
-      if (bindUserDom) {
-        bindUserDom.style && (bindUserDom.style.opacity = '0')
+      if (getLuckyObj && getLuckyObj[0]) {
+        let bindUserDom = document.querySelector(`.bind-user-${getLuckyObj[0]}`);
+        if (bindUserDom) {
+          bindUserDom.style && (bindUserDom.style.opacity = '0');
+        }
       }
       paramsFields.totalMember -= 1;
       leftCount--;
@@ -491,7 +518,7 @@ const changePrizeStatus = () => {
     basicData.isNextPrize = true;
     if (basicData.currentPrizeIndex <= -1) {
       // 保存最后轮次中奖名单
-      myApi.saveOneRoundLuckyData(type, JSON.stringify(curLucky));
+      curLucky && myApi.saveOneRoundLuckyData(type, JSON.stringify(curLucky));
       // currentPrizeIndex = 0;
     }
     // currentPrize = basicData.prizes[currentPrizeIndex];
@@ -509,6 +536,9 @@ const saveData = () => {
   if (basicData.currentLuckys && basicData.currentLuckys.length > 0) {
     // todo 添加数据保存机制，以免服务器挂掉数据丢失
     // return myApi.setData(type, JSON.stringify(basicData.currentLuckys));
+    if (!basicData.luckyUsers[type]) {
+      return Promise.resolve();
+    }
     return myApi.saveOneRoundLuckyData(type, JSON.stringify(basicData.luckyUsers[type]));
   }
   return Promise.resolve();

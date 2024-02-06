@@ -7,6 +7,7 @@ export const lotteryDataStore = defineStore('LOTTERY', {
       prizes: [], //奖品信息
       users: [], //所有人员
       luckyUsers: {}, //已中奖人员
+      lotteredUser: {}, //所有中奖名单 boolean值
       company: '',
       totalCards: 0, // 总牌数
       eachCount: [18, 10, 1, 1, 5, 3, 2, 10], // 每次抽取的奖品个数
