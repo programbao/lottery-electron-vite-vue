@@ -743,6 +743,10 @@ export const lotteryDataStore = defineStore('LOTTERY', {
         detailsFontSize: '8px', // 详情字体大小
         imgWidth: '100%',
         imgHeight: '10px'
+      },
+      btnSettings: {
+        fontSize: '20px',
+        height: '80px'
       }
     }
   },

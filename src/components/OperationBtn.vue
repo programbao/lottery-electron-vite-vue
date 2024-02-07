@@ -9,7 +9,7 @@
       class="lottery-operation-btn"
       :style="operationBtnStyle">
       <div class="begin-lottery">
-        <button class="btn" id="enter"  v-if="noBeginLottery" @click="(e) => enterLottery(e)">
+        <button class="btn" id="enter"  :style="btnSettings" v-if="noBeginLottery" @click="(e) => enterLottery(e)">
           {{ textMappingConfig.enter.chineseText }}
           <span v-if="textMappingConfig.enter.otherLanguagesText">
             <br/>
@@ -19,6 +19,7 @@
         <button 
           class="btn"
           id="showPrize" 
+          :style="btnSettings"
           @click="(e) => showPrize(e)" 
           v-if="!noBeginLottery && isNextPrize && currentPrize">
           <div v-html="currentPrize.name">
@@ -28,6 +29,7 @@
         <button 
           class="btn" 
           id="lottery" 
+          :style="btnSettings"
           v-show="!noBeginLottery && !isNextPrize" 
           @click="(e) => beginLottery(e, isLotting ? textMappingConfig.lotteryEnd.chineseText : isContinueLottery ?  textMappingConfig.continueLottery.chineseText : textMappingConfig.lottery.chineseText)">
           {{ isLotting ? textMappingConfig.lotteryEnd.chineseText : isContinueLottery ?  textMappingConfig.continueLottery.chineseText : textMappingConfig.lottery.chineseText }}
@@ -48,6 +50,7 @@
       <button 
         class="btn"
         id="reLottery"
+        :style="btnSettings"
         @click="(e) => reLottery(e)"
         v-show="!noBeginLottery 
           && !isResetCurrentPrize
@@ -69,6 +72,7 @@
       <button 
         id="showAllLucks" 
         class="btn" 
+        :style="btnSettings"
         v-if="!currentPrize"
         @click="(e) => showAllLuckyUser('showAllLuckys', e)">
         {{ textMappingConfig.showAllLucks.chineseText }}
@@ -153,6 +157,13 @@
           <span v-if="textMappingConfig.toggleSettingCardSetting.otherLanguagesText">
             <br/>
             {{ textMappingConfig.toggleSettingCardSetting.otherLanguagesText }}
+          </span>
+       </button>
+       <button class="btn" @click="(e) => toggleSetting('btnSetting', e)">
+          {{ textMappingConfig.toggleBtnCardSetting.chineseText }}
+          <span v-if="textMappingConfig.toggleBtnCardSetting.otherLanguagesText">
+            <br/>
+            {{ textMappingConfig.toggleBtnCardSetting.otherLanguagesText }}
           </span>
        </button>
         <button class="btn" @click="(e) => toggleSetting('ballSetting', e)">
@@ -255,6 +266,7 @@
     <checkFileListDialog ref="checkFileListDialogRef" />
     <textMappingConfigDialog ref="textMappingConfigDialogRef" />
     <operationLogDialog ref="operationLogRef" />
+    <btnSettingConfigDialog ref="btnSettingDialogRef" />
   </div>
 </template>
 
@@ -275,6 +287,7 @@ import operationLogDialog from "../components/configWidget/operationLog/dialog.v
 import ballSettingDialog from "../components/configWidget/ballSetting/dialog.vue"
 import checkFileListDialog from "../components/configWidget/checkFileList/dialog.vue"
 import textMappingConfigDialog from "../components/configWidget/textMappingConfig/dialog.vue"
+import btnSettingConfigDialog from "../components/configWidget/btnSetting/dialog.vue"
 import openHelp from '../libs/help.js'
 const operationBtnStyle = ref({});
 import dayjs from 'dayjs'
@@ -289,6 +302,7 @@ const ballSettingDialogRef = ref();
 const checkFileListDialogRef = ref();
 const textMappingConfigDialogRef = ref();
 const operationLogRef = ref();
+const btnSettingDialogRef = ref();
 const basicData = lotteryDataStore();
 const toggleSetting = (settingStr, event) => {
   // window.operationLogTable.add({
@@ -327,6 +341,9 @@ const toggleSetting = (settingStr, event) => {
       break;
     case 'textMappingConfig': 
       textMappingConfigDialogRef.value.toggleConfig()
+      break;
+    case 'btnSetting':
+      btnSettingDialogRef.value.toggleConfig();
       break;
     default:
       break;
@@ -369,7 +386,10 @@ const screenImg = computed(() => {
 const toggleScreenImg = (bool) => {
   isShowScreenImg.value = true
 }
-
+// 按钮相关设置
+const btnSettings = computed(() => {
+  return basicData.btnSettings
+})
 const textMappingConfig = computed(() => {
   return basicData.textMappingConfig
 })
@@ -854,10 +874,10 @@ onBeforeUnmount(() => {
   /* left: 60%; */
   right: 4%;
   transition: all .2s;
-  .btn {
-    height: 80px;
-    font-size: 20px;
-  }
+  // .btn {
+  //   height: 80px;
+  //   font-size: 20px;
+  // }
 }
 .screen-img {
   position: fixed;

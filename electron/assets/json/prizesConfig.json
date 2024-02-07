@@ -138,6 +138,11 @@
       "chineseText": "卡片设置",
       "otherLanguagesText": "card setting"
     },
+    "toggleBtnCardSetting": {
+      "defaultText": "按钮设置",
+      "chineseText": "按钮设置",
+      "otherLanguagesText": "button setting"
+    },
     "toggleSettingBallSetting": {
       "defaultText": "球体设置",
       "chineseText": "球体设置",
@@ -216,6 +221,11 @@
     "otherResourcesSettings": {
       "defaultText": "",
       "chineseText": "其他资源设置",
+      "otherLanguagesText": ""
+    },
+    "btnSetting": {
+      "defaultText": "",
+      "chineseText": "按钮相关设置",
       "otherLanguagesText": ""
     },
     "prizeConfiguration": {
@@ -736,5 +746,9 @@
     "detailsFontSize": "18px",
     "imgWidth": "100%",
     "imgHeight": "10px"
+  },
+  "btnSettings": {
+    "fontSize": "22px",
+    "height": "100px"
   }
 }
