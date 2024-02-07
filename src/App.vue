@@ -76,6 +76,34 @@ body {
 }
 </style>
 <style>
+/* toast样式 */
+.Vue-Toastification__toast--warning {
+  /* background-color: #E6A23C; */
+}
+.Vue-Toastification__toast--success {
+  /* background-color: #67C23A; */
+}
+.Vue-Toastification__toast--error {
+  background-color: #F56C6C;
+}
+.Vue-Toastification__toast--info {
+  /* background-color: #909399; */
+  /* background-color: rgba(127, 255, 255, 0.45) !important; */
+  background-color: transparent !important;
+  box-shadow: 0px 0px 15px rgb(127 255 255 / 55%)  !important;
+  color: aqua !important;
+  font-size: 27px !important;
+  /* color: rgba(127, 255, 255, 0.75); */
+  /* border: 1px solid rgb(127 255 255 / 75%); */
+
+}
+/* 提示进度条 */
+.Vue-Toastification__progress-bar {
+   background: rgba(127, 255, 255, 0.75) !important;
+}
+.Vue-Toastification__toast-body {
+  font-size: 25px !important;
+}
 .el-dialog {
   max-width: 950px;
 }

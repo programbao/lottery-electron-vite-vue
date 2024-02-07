@@ -426,7 +426,9 @@ const lottery = () => {
     let leftCount = paramsFields.totalMember;
     let leftPrizeCount = basicData.currentPrize.count - (luckyData ? luckyData.length : 0);
     if (leftCount < perCount) {
-      toast.error("剩余参与抽奖人员不足，现在重新设置所有人员可以进行二次抽奖！  Jumlah orang yang tersisa untuk berpartisipasi dalam lotere tidak mencukupi. Sekarang setel ulang semua orang untuk membuat lotere kedua!");
+      toast.error("剩余参与抽奖人员不足，现在重新设置所有人员可以进行二次抽奖！  Jumlah orang yang tersisa untuk berpartisipasi dalam lotere tidak mencukupi. Sekarang setel ulang semua orang untuk membuat lotere kedua!", { 
+        timeout: 5000
+      });
       perCount = leftCount
       return
     }
@@ -638,13 +640,15 @@ const lotteryActiveFn = async () => {
       basicData.isShowAllLuckyUser = true;
     })
     toast.info(`抽奖已结束，谢谢参与 undian telah selesai,terima kasih telah bergabung`, { 
-      duration: 3000
+      duration: 5000
     });
     document.querySelector("#lottery").remove();
     return
   }
   if (paramsFields.threeDCards.length <= 0) {
-    toast.error("剩余参与抽奖人员不足，现在重新设置所有人员可以进行二次抽奖！");
+    toast.error("剩余参与抽奖人员不足，现在重新设置所有人员可以进行二次抽奖！", { 
+      timeout: 5000
+    });
     return;
   }
   basicData.isLotting = true
@@ -693,7 +697,7 @@ const lotteryActiveFn = async () => {
     // 抽奖
     lottery("lottery");
     toast.info(`正在抽取[${basicData.currentPrize.name}],调整好姿势  penghargaan sedang diundi,silahkan persiapkan diri`, { 
-      timeout: 2000
+      timeout: 5000
     });
     return
   }
@@ -715,7 +719,7 @@ const lotteryActiveFn = async () => {
     // 抽奖
     lottery("lottery");
     toast.info(`正在抽取[${basicData.currentPrize.title}],调整好姿势  penghargaan sedang diundi,silahkan persiapkan diri`, { 
-      timeout: 2000
+      timeout: 5000
     });
   });
 }
@@ -724,12 +728,14 @@ const beginLottery = () => {
   let perCount = basicData.eachCount[basicData.currentPrizeIndex];
   let leftCount = paramsFields.totalMember;
   if (leftCount < perCount) {
-    toast.error(`剩余${leftCount}人，而每轮要抽${perCount}人；所有参与抽奖人员不足，不能进行下去；可去“奖项设置”调整每轮抽奖个数或调整所有参与抽奖人员！`);
+    toast.error(`剩余${leftCount}人，而每轮要抽${perCount}人；所有参与抽奖人员不足，不能进行下去；可去“奖项设置”调整每轮抽奖个数或调整所有参与抽奖人员！`, {
+      timeout: 5000
+    });
     return
   }
   if (basicData.isAnimating) {
     toast.info(`请等待动画加载完成  harap tunggu hingga animasi dimuat`, { 
-      timeout: 2000
+      timeout: 5000
     });
     return
   }
@@ -788,6 +794,23 @@ const removeLuckyUser = () => {
     });
   }
 };
+
+// 过滤相同item
+function filterUniqueOptions(options) {
+  const seen = new Set();
+  const filteredOptions = [];
+
+  for (const option of options) {
+    const id = option[0];
+
+    if (!seen.has(id)) {
+      seen.add(id);
+      filteredOptions.push(option);
+    }
+  }
+
+  return filteredOptions;
+}
 const reLottery = () => {
   basicData.isReLottery = true;
   basicData.isNextPrize = false
@@ -803,7 +826,10 @@ const reLottery = () => {
     // }, 1500)
     // return
   }
-  paramsFields.member = JSON.parse(JSON.stringify(basicData.memberListData[ basicData.currentLotteryGroup.group_identity] || []));
+  paramsFields.member = JSON.parse(JSON.stringify(paramsFields.member.concat(basicData.currentLuckys)));
+  // 过滤
+  paramsFields.member = filterUniqueOptions(paramsFields.member);
+  // JSON.parse(JSON.stringify(basicData.memberListData[ basicData.currentLotteryGroup.group_identity] || []));
   paramsFields.totalMember = paramsFields.member.length
 
   removeLuckyUser();
@@ -825,7 +851,12 @@ const resetCurrentPrizeBtnClick = async () => {
     delete basicData.luckyUsers[type]
     // // 重置当前奖项 所有人员原来名单
     const userGroup = findCurrentLotteryGroup();
-    basicData.memberListData[userGroup.group_identity] = JSON.parse(JSON.stringify(basicData.originMemberListData[userGroup.group_identity]));
+    let lotteredUserMap = getLotteredUserMap();
+    let currentGroupData = JSON.parse(JSON.stringify(basicData.originMemberListData[userGroup.group_identity]));
+    // 过滤已中奖的名单
+    currentGroupData = currentGroupData.filter(user => !lotteredUserMap[user[0]]);
+    basicData.memberListData[userGroup.group_identity] = currentGroupData;
+
     switchLotteryMemberData(userGroup);
     // const adjustMemberListDataFn = (userGroup) => {
     //   basicData.memberListData[userGroup.group_identity] = JSON.parse(JSON.stringify(basicData.originMemberListData[userGroup.group_identity]));
@@ -886,6 +917,7 @@ const adjustShineUser = (switchTime) => {
 bus.on('enterLottery', enterAnimate)
 bus.on('beginLottery', beginLottery)
 bus.on('resetBtnClick', resetBtnClick)
+// bus.on('resetCurrentPrizeBtnClick', resetCurrentPrizeBtnClick)
 bus.on('resetCurrentPrizeBtnClick', resetCurrentPrizeBtnClick)
 bus.on('reLottery', reLottery)
 bus.on('exportData', exportData)

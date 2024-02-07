@@ -53,7 +53,9 @@ const musicBoxClick = (e) => {
         animate()
       },
       () => {
-        toast.error("I'm a toast!");
+        toast.error("I'm a toast!", { 
+          timeout: 5000
+        });
       }
     )
   } else {

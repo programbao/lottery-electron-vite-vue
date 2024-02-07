@@ -441,7 +441,7 @@ const beginLottery = (e, btnTxt) => {
   }
   if (basicData.isAnimating && btnTxt !== textMappingConfig.value.lotteryEnd.chineseText) {
     toast.info(`请等待动画加载完成  harap tunggu hingga animasi dimuat`, { 
-      timeout: 2000
+      timeout: 5000
     });
     return
   }
@@ -524,6 +524,7 @@ const exportData = (e) => {
   }
 }
 
+// 重置当前奖品
 const resetCurrentPrizeBtnClick = (e) => {
   if (basicData.prizes.length === 0) {
     ElMessage({
@@ -661,22 +662,22 @@ const barMouseleave = () => {
 let adjustBtnTimer = null;
 // 调整抽奖动作按钮
 const adjustLotteryActionBtn = () => {
-  clearTimeout(adjustBtnTimer);
-  adjustBtnTimer = setTimeout(() => {
-    let bottomCardDom = document.querySelector("#card-0");
-    if (basicData.isShowPrizeMark) {
-      bottomCardDom = document.querySelector(".next-prize");
-      if (bottomCardDom) {
-        operationBtnStyle.value.left = bottomCardDom.getBoundingClientRect().x + bottomCardDom.clientWidth / 2 + 'px'
-        return
-      }
-    }
-    if (!bottomCardDom || !basicData.isEnterLottery) {
-      operationBtnStyle.value.left = '60%';
-    } else {
-      operationBtnStyle.value.left = bottomCardDom.getBoundingClientRect().x + 'px'
-    }
-  }, 620)
+  // clearTimeout(adjustBtnTimer);
+  // adjustBtnTimer = setTimeout(() => {
+  //   let bottomCardDom = document.querySelector("#card-0");
+  //   if (basicData.isShowPrizeMark) {
+  //     bottomCardDom = document.querySelector(".next-prize");
+  //     if (bottomCardDom) {
+  //       operationBtnStyle.value.left = bottomCardDom.getBoundingClientRect().x + bottomCardDom.clientWidth / 2 + 'px'
+  //       return
+  //     }
+  //   }
+  //   if (!bottomCardDom || !basicData.isEnterLottery) {
+  //     operationBtnStyle.value.left = '60%';
+  //   } else {
+  //     operationBtnStyle.value.left = bottomCardDom.getBoundingClientRect().x + 'px'
+  //   }
+  // }, 620)
 }
 
 // 键盘事件
@@ -850,8 +851,13 @@ onBeforeUnmount(() => {
   position: fixed;
   display: flex;
   bottom: 40px;
-  left: 60%;
+  /* left: 60%; */
+  right: 4%;
   transition: all .2s;
+  .btn {
+    height: 80px;
+    font-size: 20px;
+  }
 }
 .screen-img {
   position: fixed;
