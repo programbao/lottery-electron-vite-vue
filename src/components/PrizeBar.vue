@@ -83,11 +83,14 @@ const prizesListConfig = ref({});
 const prizes = computed(() => {
   return basicData.prizes;
 });
+const textMappingConfig = computed(() => {
+  return basicData.textMappingConfig
+})
 const currentPrize = computed(() => {
   return basicData.prizes[basicData.currentPrizeIndex] || {
     type: -1,
     count: 0,
-    name: "谢谢参与 undian telah selesai,terima kasih telah bergabung",
+    name: textMappingConfig.value.thanksForJoiningIn.chineseText + " " + textMappingConfig.value.thanksForJoiningIn.otherLanguagesText,
     otherName: "已结束",
     img: ""
   };
@@ -136,7 +139,7 @@ const setPrizeData = ({currentPrizeIndex, count, isInit}) => {
   let currentPrize = basicData.prizes[currentPrizeIndex] ||  {
     type: -1,
     count: 0,
-    name: "谢谢参与 undian telah selesai,terima kasih telah bergabung",
+    name: textMappingConfig.value.thanksForJoiningIn.chineseText + " " + textMappingConfig.value.thanksForJoiningIn.otherLanguagesText,
     otherName: "已结束",
     img: ""
   },

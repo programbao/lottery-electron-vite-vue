@@ -717,6 +717,11 @@
       "defaultText": "",
       "chineseText": "帮助",
       "otherLanguagesText": ""
+    },
+    "thanksForJoiningIn": {
+      "defaultText": "",
+      "chineseText": "谢谢参与",
+      "otherLanguagesText": "undian telah selesai,terima kasih telah bergabung"
     }
   },
   "luckyCardConfigStyle": {

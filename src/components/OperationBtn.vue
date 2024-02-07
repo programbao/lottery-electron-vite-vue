@@ -784,17 +784,17 @@ onBeforeUnmount(() => {
 .tips-bottom {
   position: fixed;
   right: 10px;
-  bottom: 70px;
+  bottom: 90px;
   color: rgba(127, 255, 255, 0.75);
   display: flex;
 }
 // 底部控制bar
 .bottom-bar {
   position: fixed;
-  bottom: -80px; /* 隐藏操作栏 */
+  bottom: -100px; /* 隐藏操作栏 */
   left: 0;
   right: 0;
-  height: 80px;
+  height: 100px;
   background-color: rgba(0,0,0,0.9);
   transition: bottom 0.3s ease-out; /* 过渡动画 */
   z-index: 100;

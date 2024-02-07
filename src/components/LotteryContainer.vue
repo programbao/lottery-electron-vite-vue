@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import { onMounted, onBeforeMount, onBeforeUnmount, ref, nextTick } from 'vue'
+import { onMounted, onBeforeMount, onBeforeUnmount, ref, nextTick, computed } from 'vue'
 import { useToast } from "vue-toastification";
 import bus from '../libs/bus'
 const toast = useToast();
@@ -18,7 +18,9 @@ import { shineCard, getCardWithParentHtml, createCardWithParentDom, random, remo
 import { ElMessage, ElLoading } from 'element-plus'
 import { nanoid } from 'nanoid';
 import dayjs from 'dayjs'
-
+const textMappingConfig = computed(() => {
+  return basicData.textMappingConfig
+})
 let camera;
 let scene;
 let renderer;
@@ -426,7 +428,7 @@ const lottery = () => {
     let leftCount = paramsFields.totalMember;
     let leftPrizeCount = basicData.currentPrize.count - (luckyData ? luckyData.length : 0);
     if (leftCount < perCount) {
-      toast.error("剩余参与抽奖人员不足，现在重新设置所有人员可以进行二次抽奖！  Jumlah orang yang tersisa untuk berpartisipasi dalam lotere tidak mencukupi. Sekarang setel ulang semua orang untuk membuat lotere kedua!", { 
+      toast.error("剩余参与抽奖人员不足，现在重新设置所有人员可以进行二次抽奖！", { 
         timeout: 5000
       });
       perCount = leftCount
@@ -639,7 +641,7 @@ const lotteryActiveFn = async () => {
       // bus.emit('showAllPrizes')
       basicData.isShowAllLuckyUser = true;
     })
-    toast.info(`抽奖已结束，谢谢参与 undian telah selesai,terima kasih telah bergabung`, { 
+    toast.info(`抽奖已结束，谢谢参与`, { 
       duration: 5000
     });
     document.querySelector("#lottery").remove();
@@ -696,7 +698,7 @@ const lotteryActiveFn = async () => {
 
     // 抽奖
     lottery("lottery");
-    toast.info(`正在抽取[${basicData.currentPrize.name}],调整好姿势  penghargaan sedang diundi,silahkan persiapkan diri`, { 
+    toast.info(`正在抽取[${basicData.currentPrize.name}],调整好姿势`, { 
       timeout: 5000
     });
     return
@@ -718,7 +720,7 @@ const lotteryActiveFn = async () => {
     await saveData();
     // 抽奖
     lottery("lottery");
-    toast.info(`正在抽取[${basicData.currentPrize.title}],调整好姿势  penghargaan sedang diundi,silahkan persiapkan diri`, { 
+    toast.info(`正在抽取[${basicData.currentPrize.title}],调整好姿势`, { 
       timeout: 5000
     });
   });
@@ -734,7 +736,7 @@ const beginLottery = () => {
     return
   }
   if (basicData.isAnimating) {
-    toast.info(`请等待动画加载完成  harap tunggu hingga animasi dimuat`, { 
+    toast.info(`请等待动画加载完成`, { 
       timeout: 5000
     });
     return
