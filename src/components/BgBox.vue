@@ -11,8 +11,11 @@
           object-fit: cover;
       " 
       :src="bgImg.fileUrl" class="img-bg"/>
-    <div style="
-      background: rgba(0, 0, 0, 0.3);
+    <div 
+      :style="{
+          'background': 'rgba(0, 0, 0, ' + bgImgMarkOpacity + ')'
+      }"
+      style="
       position: fixed;
       top: 0;
       left: 0;
@@ -32,6 +35,10 @@ import { lotteryDataStore } from '../store'
 const basicData = lotteryDataStore();
 const bgImg = computed(() => {
   return basicData.otherResource.bgImg
+})
+
+const bgImgMarkOpacity = computed(() => {
+  return basicData.otherResource.bgImgMarkOpacity || "0.3"
 })
 
 

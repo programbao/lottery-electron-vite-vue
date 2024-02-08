@@ -44,7 +44,8 @@
     "musicFile": {
       "fileUrl": "",
       "fileName": "music.mp3"
-    }
+    },
+    "bgImgMarkOpacity": "0.3"
   },
   "secretPrizesGroupList": [],
   "secretUsers": [],

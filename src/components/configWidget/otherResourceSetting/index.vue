@@ -67,6 +67,14 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-row :gutter="24">
+        <el-col :span="12">
+          <el-form-item label="背景图片遮罩透明度">
+            <el-input 
+              v-model="formLabelAlign.bgImgMarkOpacity"></el-input> 
+          </el-form-item>
+        </el-col>
+      </el-row>
     </el-form>
 </template>
 
@@ -119,7 +127,8 @@ const formLabelAlign = ref({
   musicFile: {
     fileUrl: '',
     fileName: ''
-  }
+  },
+  bgImgMarkOpacity: '0.3'
 })
 const importFile = async (key) => {
   // 图片文件
