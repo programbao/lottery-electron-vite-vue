@@ -373,18 +373,24 @@ const tipsOpenFileKey = ref(0);
 // 图片相关设置
 const isShowScreenImg = ref(false)
 const bgWallClick = () => {
-  basicData.isEnterBgWall = true
-  isShowScreenImg.value = false
+  nextTick(() => {
+    basicData.isEnterBgWall = true
+    isShowScreenImg.value = false
+  }) 
 }
 const showLotteryClick = () => {
-  basicData.isEnterBgWall = false
-  isShowScreenImg.value = false
+  nextTick(() => {
+    basicData.isEnterBgWall = false
+    isShowScreenImg.value = false
+  })
 }
 const screenImg = computed(() => {
   return basicData.otherResource.screenImg
 })
 const toggleScreenImg = (bool) => {
-  isShowScreenImg.value = true
+  nextTick(() => {
+    isShowScreenImg.value = true
+  })
 }
 // 按钮相关设置
 const btnSettings = computed(() => {

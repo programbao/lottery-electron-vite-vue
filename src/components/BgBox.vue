@@ -20,10 +20,10 @@
       height: 100vh;"
       class="mark"></div>
   </div>
-  <img
+  <!-- <img
     v-if="isShowScreenImg"
     class="screen-img slit-in-vertical"
-    :src="screenImg.fileUrl" />
+    :src="screenImg.fileUrl" /> -->
 </template>
 
 <script setup>

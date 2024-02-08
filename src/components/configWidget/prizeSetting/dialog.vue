@@ -231,6 +231,8 @@ const handlePrizesSetting = async () => {
       type: 'success',
       status: 1
     }
+    // 显示奖项
+    basicData.isEnterBgWall = false
   } else {
     isSuccess = {
       type: 'error',
