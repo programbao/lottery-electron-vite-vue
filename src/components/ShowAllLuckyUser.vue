@@ -90,8 +90,9 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { lotteryDataStore } from '../store'
+import bus from '../libs/bus'
 const basicData = lotteryDataStore();
 const allLuckyUserBoxRef = ref();
 const luckyCardConfigStyle = ref({});
@@ -219,7 +220,14 @@ const autoScrollFn = (params) => {
     autoScroll();
   };
 }
-
+onMounted(() => {
+  luckyCardConfigStyle.value = basicData.luckyCardConfigStyle;
+  bus.on('luckyCardConfigStyleSetting', () => {
+    setTimeout(() => {
+      luckyCardConfigStyle.value = basicData.luckyCardConfigStyle;
+    }, 1100)
+  })
+})
 </script>
 
 <style lang="scss" scoped>

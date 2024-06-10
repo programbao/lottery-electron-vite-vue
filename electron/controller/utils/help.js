@@ -1,8 +1,8 @@
-import fs from "fs";
-import path from "path";
-import xlsx from "node-xlsx";
 import { dialog } from 'electron'
-import { fileURLToPath } from 'url';
+import fs from "fs"
+import xlsx from "node-xlsx"
+import path from "path"
+import { fileURLToPath } from 'url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const isBuild = process.env.NODE_ENV !== 'development';
 let cwd = path.join(__dirname,  `${isBuild ? '../../../' : '../../electron/'}assets/json`);
@@ -163,14 +163,16 @@ function writeXML(data, name) {
     });
   });
 }
+
 // 根据已有的xlsx保存已存在的文件
 function saveExistenceXML(data, name, savePath) {
   let buffer = xlsx.build([
     {
-      name: name,
+      name: 'Sheet1',
       data: data
     }
   ]);
+  
   // let savePath = path.join(path.join(__dirname,  `${isBuild ? '../../../' : '../../electron/'}assets/xlsx_write`), name)
   return new Promise((resolve, reject) => {
     fs.writeFile(savePath, buffer, err => {
@@ -242,12 +244,10 @@ function shuffle(arr) {
 }
 
 export {
-  loadTempData,
-  loadXML,
-  shuffle,
-  writeXML,
-  saveDataFile,
+  getExcelHeader, loadTempData,
+  loadXML, saveDataFile,
   saveErrorDataFile,
-  saveExistenceXML,
-  getExcelHeader
-};
+  saveExistenceXML, shuffle,
+  writeXML
+}
+
