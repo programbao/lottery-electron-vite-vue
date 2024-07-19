@@ -1,0 +1,59 @@
+{
+  "name": "pc-lottery",
+  "version": "1.0.3",
+  "main": "dist-electron/main/index.js",
+  "description": "Really simple Electron + Vue + Vite boilerplate.",
+  "author": "programbao",
+  "license": "MIT",
+  "private": true,
+  "keywords": [
+    "electron",
+    "rollup",
+    "vite",
+    "vue3",
+    "vue"
+  ],
+  "debug": {
+    "env": {
+      "VITE_DEV_SERVER_URL": "http://127.0.0.1:3344/",
+      "NODE_ENV": "development"
+    }
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite && cross-env NODE_ENV=development",
+    "build": "vue-tsc --noEmit && vite build && electron-builder",
+    "build:mac": "vue-tsc --noEmit && vite build && electron-builder --mac",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "dayjs": "^1.11.10",
+    "electron-win-state": "^1.1.22",
+    "element-plus": "^2.4.2",
+    "godb": "^0.6.2",
+    "intro.js": "^7.2.0",
+    "lodash": "^4.17.21",
+    "mitt": "^3.0.1",
+    "nanoid": "^3.3.6",
+    "node-xlsx": "^0.23.0",
+    "pinia": "^2.1.7",
+    "vite-plugin-optimizer": "^1.4.2",
+    "vue-toastification": "^2.0.0-rc.5",
+    "vuedraggable": "^4.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.1",
+    "cross-env": "^7.0.3",
+    "electron": "^28.1.0",
+    "electron-builder": "^24.9.1",
+    "tree-kill": "^1.2.2",
+    "typescript": "^5.3.3",
+    "vite": "5.1.0",
+    "sass": "^1.69.4",
+    "vite-plugin-electron": "^0.28.0-beta.1",
+    "vite-plugin-electron-renderer": "^0.14.5",
+    "vue": "^3.4.1",
+    "vue-tsc": "^1.8.27"
+  }
+}
