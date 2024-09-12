@@ -742,9 +742,9 @@
     "companyTop": "19px",
     "companyFontSize": "16px",
     "nameTop": "7vh",
-    "nameFontSize": "18px",
+    "nameFontSize": "25px",
     "detailsBottom": "1vh",
-    "detailsFontSize": "18px",
+    "detailsFontSize": "20px",
     "imgWidth": "100%",
     "imgHeight": "10px"
   },
