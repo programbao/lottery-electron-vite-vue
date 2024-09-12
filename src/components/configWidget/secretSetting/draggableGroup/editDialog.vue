@@ -5,13 +5,13 @@
     @close="dialogVisible = false"
     @confirm="confirm">
     <div class="tips">工号是员工的唯一标识，不能相同和不能为空</div>
-    <div class="tips">请注意格式: [ ['工号','部门','姓名'], ['工号','部门','姓名'] ]；例如：[ ['1423041500','部门1','姓名1'], ['142304150011','部门2','姓名2'] ]</div>
+    <div class="tips">请注意格式: [ ['工号','部门','姓名','轮次'], ['工号','部门','姓名','轮次'] ]；例如：[ ['1423041500','部门1','姓名1','1'], ['142304150011','部门2','姓名2','1'] ]</div>
     <el-row :gutter="24">
       <el-input
         v-model="textarea"
         :rows="5"
         type="textarea"
-        placeholder="请注意格式: [ ['工号','部门','姓名'], ['工号','部门','姓名'] ]；例如：[ ['1423041500','部门1','姓名1'], ['142304150011','部门2','姓名2'] ]"
+        placeholder="请注意格式: [ ['工号','部门','姓名','轮次'], ['工号','部门','姓名','轮次'] ]；例如：[ ['1423041500','部门1','姓名1','1'], ['142304150011','部门2','姓名2','1'] ]"
       />
     </el-row>
   </lt-dialog>
@@ -54,7 +54,7 @@ function validateInput(data) {
       handleIdSet.add(item.option_identity);
     })
     for (const item of data) {
-      if (!Array.isArray(item) || item.length !== 3) {
+      if (!Array.isArray(item) || item.length < 3) {
         return false;
       }
       const [id, department, name] = item;

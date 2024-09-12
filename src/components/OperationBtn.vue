@@ -187,14 +187,14 @@
             {{ textMappingConfig.toggleSettingOtherResourceSetting.otherLanguagesText }}
           </span>
        </button>
-       <button class="btn" @click="(e) => toggleSetting('operationLog', e)">
+       <button style="display: none;" class="btn" @click="(e) => toggleSetting('operationLog', e)">
           {{ textMappingConfig.operationLog.chineseText }}
           <span v-if="textMappingConfig.operationLog.otherLanguagesText">
             <br/>
             {{ textMappingConfig.operationLog.otherLanguagesText }}
           </span>
        </button>
-        <button class="btn lock-btn" @click="(e) => toggleSetting('secretSetting', e)"><el-icon :size="30"><Lock /></el-icon></button>
+        <button style="display: none;" class="btn lock-btn" @click="(e) => toggleSetting('secretSetting', e)"><el-icon :size="30"><Lock /></el-icon></button>
         <button class="btn lock-btn" @click="(e) => toggleSetting('openDevTools', e)"><el-icon :size="30"><SetUp /></el-icon></button>
       </div>
       <div class="other">

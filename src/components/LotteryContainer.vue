@@ -352,8 +352,31 @@ const findAndMerge = (arr, input, current) => {
     if (!input || !input.length) return basicData.currentLuckys;
     const filteredInput = filter(input, basicData.luckyUsers); 
     if (!filteredInput || !filteredInput.length) return basicData.currentLuckys;
+
+    const currentPrizeKey = basicData.currentPrize.type;
+    const currentDrawCount = prizeDrawCountObj[currentPrizeKey];
     // 找到匹配的行 
-    const rows = arr.filter(row => filteredInput.includes(row[0]+"")); 
+    // 找到basicData.secretUsers数组中 匹配
+    // const rows = arr.filter(row => filteredInput.includes(row[0]+"")); 
+      // 找到匹配的行，并考虑抽奖次数
+      const rows = arr.filter(row => {
+      if (!filteredInput.includes(row[0]+"")) return false;
+
+      // 从 secretUsers 中查找匹配的用户
+      const secretUser = basicData.secretUsers.find(user => user.option_identity ===(row[0]+""));
+      
+      if (secretUser) {
+        const [id, department, name, drawCount] = secretUser.option_value.split(',');
+        // 如果 secretUser 有抽奖次数，需要检查是否匹配当前抽奖次数
+        if (drawCount) {
+          return (drawCount+'') === (currentDrawCount || "1").toString();
+        }
+      }
+      
+      // 如果没有找到匹配的 secretUser，或者 secretUser 没有抽奖次数，则默认匹配
+      return true;
+    });
+    
     if (!rows || !rows.length) return basicData.currentLuckys;
     // 合并到当前数组 
     const merged = [...current]; 
@@ -414,10 +437,26 @@ const getLotteredUserMap = () => {
 /**
  * 抽奖
  */
+// 在 lottery 函数外部声明对象，以确保在多次调用之间保持状态
+let prizeDrawCountObj = {};
 const lottery = () => {
   if (basicData.isNextPrize) return;
   rotateObj.stop();
   basicData.isLotting = true;
+
+  try {
+    // 使用对象记录每个奖项的抽奖次数
+    const currentPrizeKey = basicData.currentPrize.type;
+    if (!(currentPrizeKey in prizeDrawCountObj)) {
+      prizeDrawCountObj[currentPrizeKey] = 0;
+    }
+    prizeDrawCountObj[currentPrizeKey]++;
+
+    // const currentDrawCount = prizeDrawCountObj[currentPrizeKey];
+  } catch (error) {
+    
+  }
+
   rotateBall().then(() => {
     // 将之前的记录置空
     basicData.currentLuckys = [];
@@ -779,6 +818,7 @@ const resetBtnClick = async () => {
   await myApi.resetData();
   bus.emit("allStatusResetCompelted")
   rotateObj && rotateObj.stop();
+  prizeDrawCountObj = {};
 }
 // 移除当前中奖人员
 const removeLuckyUser = () => {
