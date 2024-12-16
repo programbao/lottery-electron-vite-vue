@@ -3,7 +3,12 @@
     id="lucky-user-box"
     :style="luckyUserBoxStyle"
     class="lucky-user-box">
-    <canvas ref="confettiCanvasRef" class="confetti-canvas"></canvas>
+    <!-- 彩带效果 -->
+    <!-- <canvas ref="confettiCanvasRef" class="confetti-canvas"></canvas> -->
+    <div class="lucky-title":class="{
+        'slide-in-right': basicData.isShowLuckyUser,
+        'slide-out-left': !basicData.isShowLuckyUser
+      }">🍀 幸运揭晓！恭喜以下中奖名单的朋友们，继续参与，让幸运翻倍！🎉</div>
     <div 
       :class="{
         'slide-in-right': basicData.isShowLuckyUser,
@@ -219,6 +224,7 @@ const deleteLucky = (lucky) => {
   z-index: -2;
   transition: all .2s;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   /* display: none; */
@@ -226,13 +232,23 @@ const deleteLucky = (lucky) => {
 .lucky-content::-webkit-scrollbar {
   display: none;
 }
+.lucky-title{
+  width: 100%;
+  font-size: 26px;
+  font-weight: bold;
+  color: rgb(255, 215, 11);
+  margin-bottom: 60px;
+}
+.details{
+    color: rgba(153, 15, 15, 0.75);
+    font-size: 26px;
+  }
 .lucky-item {
   margin: 10px;
 }
 .lucky-item {
-  box-shadow: 0 0 12px rgba(253, 105, 0, 0.95) !important;
-  border: 1px solid rgba(253, 105, 0, 0.5) !important;
-  background-color: rgba(0,127,127,0.5077637237470506) !important;
+  box-shadow: 0 0 12px rgba(148, 121, 2, 0.95) !important;
+  background-color: rgba(255, 215, 11, 0.75) !important;
   position: relative;
   .mark-operation {
     opacity: 0;
@@ -274,7 +290,7 @@ const deleteLucky = (lucky) => {
 }
 .closeBtn {
   position: fixed;
-  bottom: 20px;
+  bottom: 20%;
   left: 50%;
   transform: translateX(-50%);
   font-size: 1.5vh;

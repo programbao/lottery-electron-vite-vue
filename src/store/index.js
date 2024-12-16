@@ -696,7 +696,7 @@ export const lotteryDataStore = defineStore('LOTTERY', {
         prizeBoxMinHeight: '15vh',
         prizeSpace: '20px',
         prizeFontSize: '1vw',
-        progressHeight: '1.8vh',
+        progressHeight: '1vh',
         progressFontSize: '1vw',
         imgGutterWidth: '8vh',
         imgGutterHeight: '8vh',

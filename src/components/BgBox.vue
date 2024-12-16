@@ -9,6 +9,7 @@
           width: 100vw;
           height: 100vh;
           object-fit: cover;
+          /* opacity: 0.9; */
       " 
       :src="bgImg.fileUrl" class="img-bg"/>
     <div 
@@ -51,6 +52,7 @@ const bgImgMarkOpacity = computed(() => {
   top: 0;
   z-index: -1;
   overflow: hidden;
+  background-color: white;
 }
 
 </style>

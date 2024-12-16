@@ -48,7 +48,7 @@
         </button>
       </div>
       <button 
-        class="btn"
+        class="btn reLotteryBtn"
         id="reLottery"
         :style="btnSettings"
         @click="(e) => reLottery(e)"
@@ -59,7 +59,6 @@
           && !isLotting
           && !isFirstPrize">
           {{ (isNextPrize || isShowPrizeMark) ? textMappingConfig.lastRoundLottery.chineseText : textMappingConfig.reLottery.chineseText }}
-          <!-- {{ (isNextPrize || isShowPrizeMark) ? 'Gambar ulang putaran sebelumnya' : 'Gambar ulang' }} -->
           <span v-if="textMappingConfig.lastRoundLottery.otherLanguagesText && (isNextPrize || isShowPrizeMark)">
             <br/>
             {{ textMappingConfig.lastRoundLottery.otherLanguagesText }}
@@ -811,7 +810,7 @@ onBeforeUnmount(() => {
   position: fixed;
   right: 10px;
   bottom: 90px;
-  color: rgba(127, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.75);
   display: flex;
 }
 // 底部控制bar
@@ -821,23 +820,26 @@ onBeforeUnmount(() => {
   left: 0;
   right: 0;
   height: 100px;
-  background-color: rgba(0,0,0,0.9);
+  width: 100vw;
+  background-color: rgba(184, 0, 1, 0.4);
   transition: bottom 0.3s ease-out; /* 过渡动画 */
   z-index: 100;
   display: flex;
   // justify-content: flex-end;
   align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   padding: 7px 0;
   > div {
     display: flex;
-    // justify-content: flex-end;
+    justify-content: flex-end;
     align-items: center;
+    // justify-content: center;
     // padding: 0 10px;
-    border-right: 1px solid rgba(127, 255, 255, 0.75);
-
+    // border-right: 2px solid rgba(255, 215, 11, 0.75);
+    margin: 0 5px;
     flex-wrap: wrap;
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
     height: 100%;
     
@@ -876,9 +878,12 @@ onBeforeUnmount(() => {
 .lottery-operation-btn {
   position: fixed;
   display: flex;
-  bottom: 40px;
+  width: 300px;
+  align-items: center;
+  justify-content: center;
+  bottom: 10%;
   /* left: 60%; */
-  right: 4%;
+  right: -4%;
   transition: all .2s;
   // .btn {
   //   height: 80px;
@@ -901,16 +906,29 @@ onBeforeUnmount(() => {
 }
 #lottery {
   animation: breath 1.6s linear infinite;
-  box-shadow: 0px 0px 15px rgb(127 255 255 / 75%);
+  box-shadow: 0px 0px 15px rgba(184, 207, 55, 0.75);
   // margin-top: 20px;
 }
-// .begin-lottery, #showAllLucks {
-//   position: fixed;
-//   bottom: 20px;
-//   display: flex;
-//   flex-direction: column;
-// }
-#reLottery {
+.begin-lottery{
+
+}
+.begin-lottery {
+  .btn{
+    padding: 10px 20px;
+    border: 2px solid rgba(255, 215, 11,0.75);
+    background-color: rgba(255, 215, 11,0.3);
+    border-radius: 50px;
+  }
+}
+#reLottery,#showAllLucks {
+    padding: 10px 20px;
+    border: 2px solid rgba(255, 215, 11,0.75);
+    background-color: rgba(255, 215, 11,0.3);
+    border-radius: 50px;
+    &:hover {
+      background-color: rgba(255, 215, 11, 0.5);
+
+    }
   // position: fixed;
   // bottom: 20px;
   // display: flex;
@@ -941,9 +959,9 @@ onBeforeUnmount(() => {
 }
 
 .btn {
-  color: rgba(127, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.75);
   background: transparent;
-  outline: 1px solid rgba(127, 255, 255, 0.75);
+  outline: 1px solid rgba(255, 215, 11, 0.75);
   border: 0;
   padding: 1vh;
   margin: 0 0.6vh;
@@ -952,18 +970,19 @@ onBeforeUnmount(() => {
   font-weight: bold;
   cursor: pointer;
   height: 50px;
+  max-width: 140px;
   // display: flex;
   // justify-content: center;
   // align-items: center;
 }
 
 .btn:hover {
-  background-color: rgba(0, 255, 255, 0.5);
+  background-color: rgba(255, 215, 11, 0.5);
 }
 
 .btn:active {
-  color: #000000;
-  background-color: rgba(0, 255, 255, 0.75);
+  color: #f0950e;
+  background-color: rgba(255, 215, 11, 0.75);
 }
 </style>
 

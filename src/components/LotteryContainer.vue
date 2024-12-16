@@ -737,7 +737,7 @@ const lotteryActiveFn = async () => {
 
     // 抽奖
     lottery("lottery");
-    toast.info(`正在抽取[${basicData.currentPrize.name}],调整好姿势`, { 
+    toast.info(`正在抽取[${basicData.currentPrize.name}],屏住呼吸，幸运或许就是你！✨`, { 
       timeout: 5000
     });
     return
@@ -759,7 +759,7 @@ const lotteryActiveFn = async () => {
     await saveData();
     // 抽奖
     lottery("lottery");
-    toast.info(`正在抽取[${basicData.currentPrize.title}],调整好姿势`, { 
+    toast.info(`正在抽取[${basicData.currentPrize.title}],屏住呼吸，幸运或许就是你！✨`, { 
       timeout: 5000
     });
   });
@@ -1004,18 +1004,19 @@ onMounted(() => {
 </style>
 <style>
 .element {
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
-  border: 1px solid rgba(127, 255, 255, 0.25);
+  box-shadow: 0 0 12px rgba(255, 136, 0, 0.5);
+  border: 1px solid rgba(218, 33, 33, 0.25);
   text-align: center;
   cursor: default;
   transition: background-color 0.3s ease-in;
   position: relative;
+  overflow: hidden;
 }
 
-.element:hover {
+/* .element:hover {
   box-shadow: 0 0 12px rgba(0, 255, 255, 0.75);
   border: 1px solid rgba(127, 255, 255, 0.75);
-}
+} */
 
 .element .company {
   position: absolute;
@@ -1032,8 +1033,9 @@ onMounted(() => {
   font-size: 3vh;
   */
   font-weight: bold;
-  color: rgba(255, 255, 255, 0.75);
-  text-shadow: 0 0 0vh rgba(0, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: bold;
+  text-shadow: 0 0 0vh rgba(240, 63, 9, 0.95);
 }
 
 .element .details {
@@ -1044,7 +1046,7 @@ onMounted(() => {
   right: 0;
   font-size: 2.0vh;
  */
-  color: rgba(127, 255, 255, 0.75);
+  color: rgba(199, 152, 90, 0.9);
 }
 .highlight {
   background-color: rgba(253, 105, 0, 0.95) !important;

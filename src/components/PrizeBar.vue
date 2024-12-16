@@ -5,13 +5,9 @@
         'slide-out-left': basicData.isEnterBgWall,
         'slide-in-left': !basicData.isEnterBgWall
       }">
-    <div v-if="prizes.length" class="prize-mess">
-      <label id="prizeType" class="prize-shine">{{currentPrize.name}}</label>
-      <label id="prizeText" class="prize-shine">{{currentPrize.otherName}}</label>
-      ，剩余<label id="prizeLeft" class="prize-shine">{{getItemPrizeConfig(currentPrize.type).surplusCount}}</label>个
-    </div>
     <ul 
       class="prize-list" 
+      v-if="currentPrize.type !== -1"
       :style="{
         width: prizesBarStyle.barBoxWidth
       }"
@@ -68,6 +64,11 @@
             </div>
         </li>`
     </ul>
+    <div v-if="prizes.length" class="prize-mess">
+      <label id="prizeType" class="prize-shine" :class="{ 'shine-animation': currentPrize.type !== -1 }">{{currentPrize.name}}</label>
+      <label id="prizeText" class="prize-shine">{{currentPrize.otherName}}</label>
+      <label v-if="currentPrize.type !== -1">,剩余<label id="prizeLeft" class="prize-shine shine-animation">{{getItemPrizeConfig(currentPrize.type).surplusCount ?? 0}}</label>个</label>
+    </div>
   </div>
 </template>
 
@@ -90,8 +91,8 @@ const currentPrize = computed(() => {
   return basicData.prizes[basicData.currentPrizeIndex] || {
     type: -1,
     count: 0,
-    name: textMappingConfig.value.thanksForJoiningIn.chineseText + " " + textMappingConfig.value.thanksForJoiningIn.otherLanguagesText,
-    otherName: "已结束",
+    name: textMappingConfig.value.thanksForJoiningIn.chineseText,
+    otherName: textMappingConfig.value.thanksForJoiningIn.otherLanguagesText,
     img: ""
   };
 });
@@ -279,38 +280,61 @@ bus.on('setPrizeData', setPrizeData)
 <style lang="scss" scoped>
 #prizeBar {
   position: fixed;
-  left: 0;
-  padding-left: 1.2vh;
-  top: 1.2vh;
+  width: 100vw;
+  // right: 10%;
+  // padding-left: 1.2vh;
+  // top: 1.2vh;
   z-index: 4;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
 
+.prize-mess {
+  color: #fff;
+  line-height: 5vh;
+  font-size: 1.6vh;
+  margin: 2.4vh 0;
+  flex: 1;
+}
+
+.prize-shine {
+  font-size: 4vh;
+  font-weight: bold;
+  color: rgba(255, 215, 11);
+  vertical-align: middle;
+  padding: 0 6px;
+}
 .prize-list {
-  position: fixed;
-  top: 10vh;
-  left: 20px;
-  height: 85vh;
+  // flex: 1;
+  display: flex;
+  justify-content: right;
+  // position: fixed;
+  // top: 10vh;
+  // left: 20px;
+  // height: 85vh;
   overflow-y: auto;
   width: 25vw;
   padding: 0;
-  padding: 40px 0;
+  // padding: 40px 0;
 }
 .prize-list::-webkit-scrollbar {
   display: none;
 }
 .prize-item {
-  padding: 9px;
+  margin-left: 25px;
+  // padding: 9px;
   // margin: 20px 0;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 4px;
   flex-wrap: nowrap;
-  background-color: rgba(0, 127, 127, 0.37);
-  border: 1px solid rgba(127, 255, 255, 0.25);
-  color: rgba(127, 255, 255, 0.75);
+  // background-color: rgba(240, 114, 12, 0.37);
+  // border: 1px solid rgba(127, 255, 255, 0.25);
+  color: rgba(251, 255, 4, 0.75);
   width: 20vw;
-  min-height: 15vh;
+  // min-height: 15vh;
   box-sizing: border-box;
   transition: transform 1s ease-in;
   position: relative;
@@ -319,13 +343,41 @@ bus.on('setPrizeData', setPrizeData)
   }
 }
 
+.shine {
+  // box-shadow: 0 0 15px 0 rgba(75, 47, 5, 0.5);
+  transform: scale(1.2);
+  transform-origin: left center;
+  position: relative;
+  overflow: hidden;
+  margin-right: 40px;
+  transition: all 0.3s ease-in-out;
+}
+.shine-animation {
+  display: inline-block; 
+  animation: scaleAnimation 2s infinite; /* 2秒完成一次循环，持续无限播放 */
+  transition: all 0.3s ease-in-out;
+}
+/* 定义动画 */
+@keyframes scaleAnimation {
+  0% {
+    transform: scale(1); /* 初始大小 */
+  }
+  50% {
+    transform: scale(1.3); /* 放大到 1.2 倍 */
+  }
+  100% {
+    transform: scale(1); /* 回到原始大小 */
+  }
+}
+
+
 .prize-item .prize-img {
   width: 8vh;
   height: 8vh;
   margin-right: 1.2vh;
   border-radius: 50%;
   background-color: #fff;
-  text-shadow: 0 0 1vh rgba(0, 255, 255, 0.95);
+  // text-shadow: 0 0 1vh rgba(0, 255, 255, 0.95);
   overflow: hidden;
 }
 #prize-item-1, #prize-item-2, #prize-item-3 {
@@ -356,7 +408,7 @@ bus.on('setPrizeData', setPrizeData)
 
 .prize-count .progress {
   height: 1.8vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(95, 76, 76, 0.5);
   padding: 1px;
   overflow: visible;
   border-radius: 1vh;
@@ -366,7 +418,7 @@ bus.on('setPrizeData', setPrizeData)
   border-radius: 1.8vh;
   position: relative;
   animation: animate-positive 2s;
-  background-color: #d9534f;
+  background-color: rgba(255, 215, 11,0.7);
   // height: 1.8vh;
   height: 100%;
   -webkit-transition: width 0.6s ease;
@@ -461,14 +513,6 @@ bus.on('setPrizeData', setPrizeData)
   transform: translateY(-50%);
 }
 
-.shine {
-  box-shadow: 0 0 15px 0 rgba(0, 255, 255, 0.5);
-  transform: scale(1.2);
-  transform-origin: left center;
-  position: relative;
-  overflow: hidden;
-}
-
 .done {
   position: relative;
 }
@@ -480,7 +524,7 @@ bus.on('setPrizeData', setPrizeData)
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  // background-color: rgba(0, 0, 0, 0.5);
   cursor: not-allowed;
 }
 
@@ -579,18 +623,4 @@ bus.on('setPrizeData', setPrizeData)
   // margin: 1.8vh 0;
 }
 
-.prize-mess {
-  color: #fff;
-  line-height: 5vh;
-  font-size: 1.6vh;
-  margin: 2.4vh 0;
-}
-
-.prize-shine {
-  font-size: 4vh;
-  font-weight: bold;
-  color: #db5c58;
-  vertical-align: middle;
-  padding: 0 6px;
-}
 </style>

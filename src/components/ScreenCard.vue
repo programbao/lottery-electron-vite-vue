@@ -17,10 +17,11 @@
           height: cardConfigStyle.cardHeight,
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100% 120%',
-          backgroundPosition: 'center center',
-          backgroundColor: 'rgba(0,127,127,' + (Math.random() * 0.7 + 0.25) + ')'
+          backgroundPosition: 'center center',   
+          backgroundColor: 'rgba(255, 215, 11,' + (Math.random() * 0.7 + 0.25) + ')',
+          overflow: 'hidden'
         }">
-        <div 
+        <!-- <div 
           class="company"
           v-if="cardConfigStyle.logo"
           :style="{
@@ -36,7 +37,7 @@
                 objectFit: 'contain'
               }">
           </div>
-        </div>
+        </div> -->
         <div 
           class="avatar"
           style="height: 100%;
@@ -215,11 +216,11 @@ onMounted(() => {
 .card-empty-tips {
   position: fixed;
   top: 50%;
-  left: 60%;
+  left: 50%;
   transform: translate(-50%, -50%);
   font-weight: 700;
   font-size: 25px;
-  color: orange;
+  color: rgb(255, 215, 11);
   width: 40%;
 }
 .prizes-empty-tips {
@@ -229,6 +230,6 @@ onMounted(() => {
   transform: translate(-50%, -50%);
   font-weight: 700;
   font-size: 25px;
-  color: orange;
+  color: rgb(255, 215, 11);
 }
 </style>

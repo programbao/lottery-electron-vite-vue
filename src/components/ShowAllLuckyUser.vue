@@ -10,7 +10,7 @@
         'slide-out-left': !basicData.isShowAllLuckyUser
       }"
       class="prize-list-box-title">
-      中奖人员名单
+      🎉 感谢大家的热情参与，本次活动幸运儿已全部揭晓！名单如下：
     </div>
     <div 
       :class="{
@@ -21,7 +21,7 @@
       :key="key"
      >
       <div class="prize-type-title">
-        {{ prizeTypeObjectMap[key] ? prizeTypeObjectMap[key]['name'] : '' }}
+        {{ prizeTypeObjectMap[key] ? "👉" + prizeTypeObjectMap[key]['name'] : '' }}
         {{ prizeTypeObjectMap[key] && prizeTypeObjectMap[key]['otherName'] ? ', ' + prizeTypeObjectMap[key]['otherName'] : '' }}
       </div>
       <div 
@@ -131,7 +131,7 @@ watch(
         filtLuckyUsers = null
         luckysRowColObj.value = basicData.luckysRowColObj;
         luckyCardConfigStyle.value = basicData.luckyCardConfigStyle;
-        $.confetti.setShowContentDom(confettiCanvasRef.value)
+        // $.confetti.setShowContentDom(confettiCanvasRef.value)
         $.confetti.restart(); 
         setTimeout(() => {
           autoScrollFn();
@@ -259,7 +259,7 @@ onMounted(() => {
   }
   .prize-list-box-title, .prize-type-title {
     font-size: 5vh;
-    color: #d9534f;
+     color: rgb(255, 215, 11);
     text-align: center;
     font-weight: 700;
     margin-top: 60px;
@@ -272,12 +272,18 @@ onMounted(() => {
     margin: 10px;
   }
   .lucky-item {
-    box-shadow: 0 0 12px rgba(253, 105, 0, 0.95) !important;
-    border: 1px solid rgba(253, 105, 0, 0.5) !important;
-    background-color: rgba(0,127,127,0.5077637237470506) !important;
+    box-shadow: 0 0 12px rgba(148, 121, 2, 0.95) !important;
+    background-color: rgba(255, 215, 11, 0.75) !important;
+    // box-shadow: 0 0 12px rgba(253, 105, 0, 0.95) !important;
+    // border: 1px solid rgba(253, 105, 0, 0.5) !important;
+    // background-color: rgba(0,127,127,0.5077637237470506) !important;
+  }
+  .details{
+    color: rgba(153, 15, 15, 0.75);
+    font-size: 26px;
   }
   .lucky-item:hover {
-    border: 1px solid rgba(253, 105, 0, 0.95) !important;
+    box-shadow: 0 0 12px rgba(253, 105, 0, 0.95) !important;
   }
   .confetti-canvas {
     position: fixed;
@@ -293,7 +299,8 @@ onMounted(() => {
     font-size: 1.5vh;
     padding: 1vh 2vw;
     margin: 0;
-    color: rgba(127, 255, 255, 0.75);
+    font-weight: bold;
+    color: rgba(255, 215, 11);
     cursor: pointer;
   }
 

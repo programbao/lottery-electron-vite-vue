@@ -1,20 +1,48 @@
 {
   "prizes": [
+    {
+      "type": "GPYbD20H2Efd1MQdcrMMq",
+      "eachCount": 1,
+      "name": "特等奖",
+      "count": 1,
+      "img": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/1734309594667_%E7%89%B9%E7%AD%89%E5%A5%96-%E5%8D%8E%E4%B8%BAmateX5.png"
+    },
+    {
+      "type": "CD0w_QiMz28jUVL77KyJ2",
+      "eachCount": 2,
+      "name": "一等奖",
+      "count": 2,
+      "img": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/1734309622354_%E4%B8%80%E7%AD%89%E5%A5%96-%E5%8D%8E%E4%B8%BAMateBook%20GT%2014.png"
+    },
+    {
+      "type": "aD7HgGyuZCTiKQEoRlB9T",
+      "eachCount": 2,
+      "name": "二等奖",
+      "count": 4,
+      "img": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/1734309636811_%E4%BA%8C%E7%AD%89%E5%A5%96-%E5%8D%8E%E4%B8%BAmatePad-pro.png"
+    },
+    {
+      "type": "EKqTkFARoG-4Q7ftoAueo",
+      "eachCount": 4,
+      "name": "三等奖",
+      "count": 8,
+      "img": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/1734309662169_%E4%B8%89%E7%AD%89%E5%A5%96-%E5%8D%8E%E4%B8%BA%E6%89%8B%E8%A1%A8.png"
+    }
   ],
   "company": "IWIP",
   "beforeLotteryLayout": {
-    "columnCount": 17,
+    "columnCount": 18,
     "rowCount": 10,
     "rowGap": "10px",
-    "columnGap": "20px",
+    "columnGap": "15px",
     "scale": 1,
-    "top": "17vh",
-    "left": "27vw"
+    "top": "19vh",
+    "left": "15vw"
   },
   "cardConfigStyle": {
     "cardWidth": "3vw",
     "cardHeight": "6vh",
-    "logo": "",
+    "logo": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/logo.png",
     "companyTop": "0.05vh",
     "companyFontSize": "8px",
     "nameTop": "1.5vh",
@@ -31,123 +59,137 @@
     "columnGap": "10px",
     "type": 1
   },
-  "groupList": [],
+  "groupList": [
+    {
+      "group_name": "1734309751786_users_template_2024_09_16.xlsx",
+      "fileUrl": "file:///D:/project/lottery-electron-vite-vue/electron/assets/xlsx_user/1734309751786_users_template_2024_09_16.xlsx",
+      "savePath": "D:\\project\\lottery-electron-vite-vue\\electron\\assets\\xlsx_user\\1734309751786_users_template_2024_09_16.xlsx",
+      "saveFolderPath": "D:\\project\\lottery-electron-vite-vue\\electron\\assets\\xlsx_user",
+      "group_identity": "users__QYJ1ZtaxXo3jqVc_9gB7",
+      "options": [
+        "GPYbD20H2Efd1MQdcrMMq",
+        "CD0w_QiMz28jUVL77KyJ2",
+        "aD7HgGyuZCTiKQEoRlB9T",
+        "EKqTkFARoG-4Q7ftoAueo"
+      ]
+    }
+  ],
   "otherResource": {
     "screenImg": {
-      "fileUrl": "",
-      "fileName": "bg2.jpg"
+      "fileUrl": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/1734314492493_%E5%8C%BA%E5%9F%9F%E6%93%A6%E9%99%A4%E6%93%8D%E4%BD%9C(1).png",
+      "fileName": "1734314492493_区域擦除操作(1).png"
     },
     "bgImg": {
-      "fileUrl": "",
-      "fileName": "bg1.jpg"
+      "fileUrl": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/1734313449503_%E6%98%A5%E8%8A%82%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90.png",
+      "fileName": "1734313449503_春节图片生成.png"
     },
     "musicFile": {
-      "fileUrl": "",
-      "fileName": "music.mp3"
+      "fileUrl": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/1734066573803_Positive%20Rush%EF%BC%88%E5%89%AA%E8%BE%91%E3%80%81%E4%B8%8A%E3%80%81%E4%B8%8B%E5%9C%BA%EF%BC%89%E6%AC%A2%E5%BF%AB_%E7%88%B1%E7%BB%99%E7%BD%91_aigei_com.mp3",
+      "fileName": "1734066573803_Positive Rush（剪辑、上、下场）欢快_爱给网_aigei_com.mp3"
     },
-    "bgImgMarkOpacity": "0.3"
+    "bgImgMarkOpacity": "0.1"
   },
   "secretPrizesGroupList": [],
   "secretUsers": [],
   "ballConfig": {
-    "resolution": 1.1,
+    "resolution": 1,
     "rotateLoop": 1000,
     "rotateTime": 3000,
     "autoRotateTime": 80000,
-    "ballRelativeLeftDistance": "13.5vw"
+    "ballRelativeLeftDistance": "0vw"
   },
   "prizesBarStyle": {
-    "barBoxWidth": "25vw",
-    "prizeBoxWidth": "20vw",
-    "prizeBoxMinHeight": "15vh",
+    "barBoxWidth": "70vw",
+    "prizeBoxWidth": "15vw",
+    "prizeBoxMinHeight": "0",
     "prizeSpace": "25px",
-    "prizeFontSize": "0.8vw",
-    "progressHeight": "1.8vh",
-    "progressFontSize": "1vw",
-    "imgGutterWidth": "8vh",
-    "imgGutterHeight": "8vh",
-    "currentPrizeScale": 1.2
+    "prizeFontSize": "1vw",
+    "progressHeight": "1.5vh",
+    "progressFontSize": "0.7vw",
+    "imgGutterWidth": "5vh",
+    "imgGutterHeight": "5vh",
+    "currentPrizeScale": 1
   },
   "textMappingConfig": {
     "enter": {
       "defaultText": "进入抽奖",
       "chineseText": "进入抽奖",
-      "otherLanguagesText": "masuk undian1"
+      "otherLanguagesText": ""
     },
     "showPrize": {
       "defaultText": "显示奖品",
       "chineseText": "显示奖品",
-      "otherLanguagesText": "奖项 undian selanjutnya"
+      "otherLanguagesText": ""
     },
     "lottery": {
       "defaultText": "开始抽奖",
       "chineseText": "开始抽奖",
-      "otherLanguagesText": "begin lottery"
+      "otherLanguagesText": ""
     },
     "reLottery": {
       "defaultText": "重新抽奖",
       "chineseText": "重新抽奖",
-      "otherLanguagesText": "reLottery"
+      "otherLanguagesText": ""
     },
     "continueLottery": {
       "defaultText": "继续抽奖",
       "chineseText": "继续抽奖",
-      "otherLanguagesText": "continue lottery"
+      "otherLanguagesText": ""
     },
     "lotteryEnd": {
       "defaultText": "结束抽奖",
       "chineseText": "结束抽奖",
-      "otherLanguagesText": "lottery over"
+      "otherLanguagesText": ""
     },
     "lastRoundLottery": {
       "defaultText": "重新抽取上一轮",
       "chineseText": "重新抽取上一轮",
-      "otherLanguagesText": "last round lottery"
+      "otherLanguagesText": ""
     },
     "showAllLucks": {
       "defaultText": "展示全部中奖名单",
       "chineseText": "展示全部中奖名单",
-      "otherLanguagesText": "daftar nama pemenang"
+      "otherLanguagesText": ""
     },
     "bgWallClick": {
       "defaultText": "背景墙",
       "chineseText": "背景墙",
-      "otherLanguagesText": "bgImg"
+      "otherLanguagesText": ""
     },
     "toggleScreenImg": {
       "defaultText": "屏幕墙",
       "chineseText": "屏幕墙",
-      "otherLanguagesText": "screenImg"
+      "otherLanguagesText": ""
     },
     "showLotteryClick": {
       "defaultText": "展示抽奖",
       "chineseText": "展示抽奖",
-      "otherLanguagesText": "show lottery"
+      "otherLanguagesText": ""
     },
     "toggleSettingUsersSetting": {
       "defaultText": "名单设置",
       "chineseText": "名单设置",
-      "otherLanguagesText": "user setting"
+      "otherLanguagesText": ""
     },
     "toggleSettingPrizeSetting": {
       "defaultText": "奖项设置",
       "chineseText": "奖项设置",
-      "otherLanguagesText": "prize setting"
+      "otherLanguagesText": ""
     },
     "toggleSettingCardSetting": {
       "defaultText": "卡片设置",
       "chineseText": "卡片设置",
-      "otherLanguagesText": "card setting"
+      "otherLanguagesText": ""
     },
     "toggleBtnCardSetting": {
       "defaultText": "按钮设置",
       "chineseText": "按钮设置",
-      "otherLanguagesText": "button setting"
+      "otherLanguagesText": ""
     },
     "toggleSettingBallSetting": {
       "defaultText": "球体设置",
       "chineseText": "球体设置",
-      "otherLanguagesText": "ball setting"
+      "otherLanguagesText": ""
     },
     "toggleSettingTextMappingConfig": {
       "defaultText": "文案设置",
@@ -162,42 +204,42 @@
     "toggleSettingSecretSetting": {
       "defaultText": "",
       "chineseText": "内置中奖名单",
-      "otherLanguagesText": "内置中奖名单"
+      "otherLanguagesText": ""
     },
     "toggleSettingCheckFileList": {
       "defaultText": "文件列表",
       "chineseText": "文件列表",
-      "otherLanguagesText": "open file list"
+      "otherLanguagesText": ""
     },
     "showAllLuckyUser": {
       "defaultText": "展示中奖名单",
       "chineseText": "展示中奖名单",
-      "otherLanguagesText": "show all lucky user"
+      "otherLanguagesText": ""
     },
     "exportData": {
       "defaultText": "导出抽奖结果",
       "chineseText": "导出抽奖结果",
-      "otherLanguagesText": "export data"
+      "otherLanguagesText": ""
     },
     "resetCurrentPrizeBtnClick": {
       "defaultText": "重置当前/上一轮奖项中奖名单",
       "chineseText": "重置当前/上一轮奖项中奖名单",
-      "otherLanguagesText": "reset current/last prize"
+      "otherLanguagesText": ""
     },
     "resetBtnClick": {
       "defaultText": "重置所有中奖名单",
       "chineseText": "重置所有中奖名单",
-      "otherLanguagesText": "reset all lucky user"
+      "otherLanguagesText": ""
     },
     "enterFullScreen": {
       "defaultText": "全屏",
       "chineseText": "全屏",
-      "otherLanguagesText": "fullscreen"
+      "otherLanguagesText": ""
     },
     "quitFullScreen": {
       "defaultText": "退出全屏",
       "chineseText": "退出全屏",
-      "otherLanguagesText": "quit fullscreen"
+      "otherLanguagesText": ""
     },
     "musicBtn": {
       "defaultText": "",
@@ -312,7 +354,7 @@
     "winningCardArrangement": {
       "defaultText": "",
       "chineseText": "中奖-卡片排列",
-      "otherLanguagesText": "Winning - card arrangement"
+      "otherLanguagesText": ""
     },
     "columnBasedArrangement": {
       "defaultText": "",
@@ -377,7 +419,7 @@
     "cardWidth": {
       "defaultText": "",
       "chineseText": "卡片宽度",
-      "otherLanguagesText": "card width"
+      "otherLanguagesText": ""
     },
     "cardHeight": {
       "defaultText": "",
@@ -731,14 +773,14 @@
     },
     "thanksForJoiningIn": {
       "defaultText": "",
-      "chineseText": "谢谢参与",
-      "otherLanguagesText": "undian telah selesai,terima kasih telah bergabung"
+      "chineseText": "抽奖已结束，🌟感谢每一位参与者！",
+      "otherLanguagesText": "Undian berhadiah telah berakhir, 🌟Terima kasih kepada semua orang yang telah berpartisipasi!"
     }
   },
   "luckyCardConfigStyle": {
     "cardWidth": "16vw",
     "cardHeight": "24vh",
-    "logo": "",
+    "logo": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/logo.png",
     "companyTop": "19px",
     "companyFontSize": "16px",
     "nameTop": "7vh",
@@ -750,6 +792,6 @@
   },
   "btnSettings": {
     "fontSize": "22px",
-    "height": "100px"
+    "height": "80px"
   }
 }

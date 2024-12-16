@@ -42,7 +42,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="isLoadingFinish">
+  <div v-if="isLoadingFinish" class="container">
     <LotteryContainer />
     <OperationBtn />
     <PrizeBar />
@@ -61,7 +61,9 @@ html,
 body {
   overflow: hidden;
 }
-
+.container {
+  position: relative;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
