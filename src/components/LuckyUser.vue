@@ -5,6 +5,8 @@
     class="lucky-user-box">
     <!-- 彩带效果 -->
     <!-- <canvas ref="confettiCanvasRef" class="confetti-canvas"></canvas> -->
+    <canvas id="fireworks"></canvas>
+
     <div class="lucky-title":class="{
         'slide-in-right': basicData.isShowLuckyUser,
         'slide-out-left': !basicData.isShowLuckyUser
@@ -101,11 +103,13 @@
 </template>
 
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch,onMounted } from 'vue'
 import bus from '../libs/bus'
 import { lotteryDataStore } from '../store'
+import { canvasFireworks } from "../libs/fireworks.js";
+
 const basicData = lotteryDataStore();
-const confettiCanvasRef = ref();
+// const confettiCanvasRef = ref();
 const luckyCardConfigStyle = computed(() => {
   return basicData.luckyCardConfigStyle;
 })
@@ -168,7 +172,7 @@ watch(
     if (basicData.isShowLuckyUser) {
       showTimer = setTimeout(() => {
         luckyUserBoxStyle.value['z-index'] = '400'
-        $.confetti.setShowContentDom(confettiCanvasRef.value)
+        // $.confetti.setShowContentDom(confettiCanvasRef.value)
         $.confetti.restart();
       });
     } else {
@@ -210,10 +214,23 @@ const deleteLucky = (lucky) => {
     basicData.luckyUsers[type] = basicData.luckyUsers[type].filter(user => lucky[0] !== user[0]);
   } 
 }
-
+onMounted(() => {
+  //烟花效果
+  const canvas = document.getElementById("fireworks");
+  canvasFireworks(canvas);
+});
 </script>
 
 <style lang="scss" scoped>
+#fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* 位于背景层 */
+  pointer-events: none; /* 不影响其他操作 */
+}
 .lucky-user-box {
   position: fixed;
   top: 0;
