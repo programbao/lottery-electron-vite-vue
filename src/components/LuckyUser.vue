@@ -19,7 +19,6 @@
       class="lucky-content" 
       :style="lucksContentStyle"
       v-if="currentLuckys && currentLuckys.length">
-      <!-- <div class="split-box"></div> -->
       <div 
         v-for="(lucky, index) in currentLuckys" 
         class="lucky-item element" 
@@ -90,7 +89,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="split-box"></div> -->
     </div>
     <button 
       v-if="basicData.isShowLuckyUser"
@@ -311,13 +309,14 @@ onMounted(() => {
   left: 0;
 }
 .closeBtn {
-  position: fixed;
-  bottom: 20%;
-  left: 50%;
-  transform: translateX(-50%);
+  // position: fixed;
+  // bottom: 20%;
+  // left: 50%;
+  // transform: translateX(-50%);
+  margin-top: 60px;
   font-size: 1.5vh;
   padding: 1vh 2vw;
-  margin: 0;
+  // margin: 0;
 }
 
 .split-box {
