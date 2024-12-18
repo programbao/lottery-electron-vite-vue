@@ -103,10 +103,10 @@
 </template>
 
 <script setup>
-import { computed, ref, watch,onMounted } from 'vue'
+import { computed, ref, watch,onMounted ,onBeforeUnmount} from 'vue'
 import bus from '../libs/bus'
 import { lotteryDataStore } from '../store'
-import { canvasFireworks } from "../libs/fireworks.js";
+import { canvasFireworks,clearCanvas } from "../libs/fireworks.js";
 
 const basicData = lotteryDataStore();
 // const confettiCanvasRef = ref();
@@ -218,6 +218,11 @@ onMounted(() => {
   //烟花效果
   const canvas = document.getElementById("fireworks");
   canvasFireworks(canvas);
+    // 在销毁时停止烟花和清理
+    onBeforeUnmount(() => {
+    if (stopFireworks) stopFireworks(); // 停止动画
+    clearCanvas(canvas); // 清理 canvas
+  });
 });
 </script>
 

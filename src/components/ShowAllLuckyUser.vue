@@ -126,7 +126,7 @@
 import { ref, watch, onMounted, onBeforeUnmount } from "vue";
 import { lotteryDataStore } from "../store";
 import bus from "../libs/bus";
-import { canvasFireworks } from '../libs/fireworks.js'
+import { canvasFireworks,clearCanvas } from '../libs/fireworks.js'
 const basicData = lotteryDataStore();
 const allLuckyUserBoxRef = ref();
 const luckyCardConfigStyle = ref({});
@@ -264,15 +264,21 @@ const autoScrollFn = (params) => {
     autoScroll();
   }
 };
+
 onMounted(() => {
      //烟花效果
-  const canvas = document.getElementById("fireworks_all");
-  canvasFireworks(canvas);
+const canvas = document.getElementById("fireworks_all");
+ const stopFireworks =  canvasFireworks(canvas);
   luckyCardConfigStyle.value = basicData.luckyCardConfigStyle;
   bus.on("luckyCardConfigStyleSetting", () => {
     setTimeout(() => {
       luckyCardConfigStyle.value = basicData.luckyCardConfigStyle;
     }, 1100);
+  });
+    // 在销毁时停止烟花和清理
+    onBeforeUnmount(() => {
+    if (stopFireworks) stopFireworks(); // 停止动画
+    clearCanvas(canvas); // 清理 canvas
   });
 });
 </script>

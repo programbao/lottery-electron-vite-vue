@@ -89,3 +89,8 @@ export  const canvasFireworks = (canvas) => {
   
     animate();
 }
+// 停止动画并清理
+export function clearCanvas(canvas) {
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
