@@ -332,7 +332,7 @@ bus.on('setPrizeData', setPrizeData)
   flex-wrap: nowrap;
   // background-color: rgba(240, 114, 12, 0.37);
   // border: 1px solid rgba(127, 255, 255, 0.25);
-  color: rgba(251, 255, 4, 0.75);
+  color: rgba(255, 215, 11);
   width: 20vw;
   // min-height: 15vh;
   box-sizing: border-box;

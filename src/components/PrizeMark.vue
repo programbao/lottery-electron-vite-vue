@@ -134,7 +134,7 @@ bus.on('hidePrizeMark', hidePrizeMark);
   flex-direction: column;
   justify-content: center;
   /* font-size: 30px; */
-  color: #d9534f;
+  color: rgba(255, 215, 11);
   text-align: right;
 }
 .next-prize .prize-text .prize-title {

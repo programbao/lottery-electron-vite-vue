@@ -31,13 +31,13 @@
   ],
   "company": "IWIP",
   "beforeLotteryLayout": {
-    "columnCount": 18,
-    "rowCount": 10,
+    "columnCount": 20,
+    "rowCount": 11,
     "rowGap": "10px",
     "columnGap": "15px",
     "scale": 1,
-    "top": "19vh",
-    "left": "15vw"
+    "top": "15vh",
+    "left": "10vw"
   },
   "cardConfigStyle": {
     "cardWidth": "3vw",
