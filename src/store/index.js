@@ -232,11 +232,6 @@ export const lotteryDataStore = defineStore('LOTTERY', {
           chineseText: '确认',
           otherLanguagesText: ''
         },
-        cancel: {
-          defaultText: '',
-          chineseText: '取消',
-          otherLanguagesText: ''
-        },
         settingSuccess: {
           defaultText: '',
           chineseText: '设置成功',

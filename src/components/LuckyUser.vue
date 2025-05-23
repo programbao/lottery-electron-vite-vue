@@ -171,7 +171,7 @@ watch(
       showTimer = setTimeout(() => {
         luckyUserBoxStyle.value['z-index'] = '400'
         // $.confetti.setShowContentDom(confettiCanvasRef.value)
-        $.confetti.restart();
+        // $.confetti.restart();
       });
     } else {
       showTimer = setTimeout(() => {
@@ -184,7 +184,7 @@ let currentIndex = -1;
 let lastIndex = -1;
 const closeBtn = async () => {
   basicData.isShowLuckyUser = false;
-  $.confetti.stop();
+  // $.confetti.stop();
   if (isHandleDel) {
     let type = basicData.currentPrize.type;
     await myApi.saveOneRoundLuckyData(type, JSON.stringify(basicData.luckyUsers[type]));
@@ -215,10 +215,21 @@ const deleteLucky = (lucky) => {
 onMounted(() => {
   //烟花效果
   const canvas = document.getElementById("fireworks");
-  canvasFireworks(canvas);
+  const fireworks = canvasFireworks(canvas);
+  fireworks.start();
     // 在销毁时停止烟花和清理
-    onBeforeUnmount(() => {
-    if (stopFireworks) stopFireworks(); // 停止动画
+  // Listen for app focus and blur events
+  window.ipcRenderer.on('app-focus', (_event, ...args) => {
+    console.log('[fireworks.start]:', ...args)
+    fireworks.start();
+  });
+  window.ipcRenderer.on('app-blur', (_event, ...args) => {
+    console.log('[ireworks.stop]:', ...args)
+    fireworks.stop();
+  });
+  onBeforeUnmount(() => {
+    // if (stopFireworks) stopFireworks(); // 停止动画
+    if (fireworks) fireworks.stop(); // 停止动画
     clearCanvas(canvas); // 清理 canvas
   });
 });
@@ -395,4 +406,12 @@ onMounted(() => {
     opacity: 1;
   }
 }
+</style>
+
+<style lang="scss">
+//.lucky-content {
+//  .name {
+//    color: #ffffff;
+//  }
+//}
 </style>

@@ -377,7 +377,7 @@ const rotateBall = (isAutoRate = false) => {
     rotateObj
       .to(
         {
-          y: Math.PI * 6 * basicData.ballConfig.rotateLoop,
+          y: -Math.PI * 6 * basicData.ballConfig.rotateLoop,
         },
         confirmRotateTime * basicData.ballConfig.rotateLoop
       )
@@ -1164,9 +1164,18 @@ onMounted(() => {
   font-size: 3vh;
   */
   font-weight: bold;
+  /* //color: #000; */
+  /*background: linear-gradient(
+     to right,
+     rgba(125, 111, 98, 1),
+     rgb(35, 24, 16)
+ );
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ font-weight: bold; *//* 可选，强调字体 */
   color: rgba(255, 255, 255, 0.9);
   font-weight: bold;
-  text-shadow: 0 0 0vh rgba(240, 63, 9, 0.95);
+  /* text-shadow: 0 0 0vh rgba(240, 63, 9, 0.95); */
 }
 
 .element .details {
@@ -1177,7 +1186,17 @@ onMounted(() => {
   right: 0;
   font-size: 2.0vh;
  */
-  color: rgba(199, 152, 90, 0.9);
+ /* 
+  //color: rgba(199, 152, 90, 0.9);
+  //color: #ffffff;
+  //color: rgba(153, 15, 15, 0.75);*/
+  background: linear-gradient(
+      to right,
+      rgba(125, 111, 98, 1),
+      rgb(35, 24, 16)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .highlight {
   background-color: rgba(253, 105, 0, 0.95) !important;

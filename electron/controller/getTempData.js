@@ -72,10 +72,10 @@ const getTempData = () => {
       sharedObject.cfg.luckyCardConfigStyle.logo = url.pathToFileURL(path.join(dbPath, 'logo.png')).href
     }
     if (sharedObject.cfg.otherResource && sharedObject.cfg.otherResource.screenImg && !sharedObject.cfg.otherResource.screenImg.fileUrl) {
-      sharedObject.cfg.otherResource.screenImg.fileUrl = url.pathToFileURL(path.join(dbPath, 'bg2.jpg')).href
+      sharedObject.cfg.otherResource.screenImg.fileUrl = url.pathToFileURL(path.join(dbPath, 'bg1.png')).href
     }
     if (sharedObject.cfg.otherResource && sharedObject.cfg.otherResource.bgImg && !sharedObject.cfg.otherResource.bgImg.fileUrl) {
-      sharedObject.cfg.otherResource.bgImg.fileUrl = url.pathToFileURL(path.join(dbPath, 'bg1.jpg')).href
+      sharedObject.cfg.otherResource.bgImg.fileUrl = url.pathToFileURL(path.join(dbPath, 'bg1.png')).href
     }
     if (sharedObject.cfg.otherResource && sharedObject.cfg.otherResource.musicFile && !sharedObject.cfg.otherResource.musicFile.fileUrl) {
       sharedObject.cfg.otherResource.musicFile.fileUrl = url.pathToFileURL(path.join(dbPath, 'music.mp3')).href

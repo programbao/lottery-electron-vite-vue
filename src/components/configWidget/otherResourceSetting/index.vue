@@ -135,7 +135,7 @@ const importFile = async (key) => {
   let extensions = JSON.stringify(['jpg', 'jpeg', 'png', 'gif', 'bmp']);
   // 音频文件
   if (key === 'musicFile') {
-    extensions = JSON.stringify(['mp3', 'm4a'])
+    extensions = JSON.stringify(['mp3', 'm4a', 'mp4'])
   }
   let { fileUrl, fileName } = await myApi.importFile('other_file', extensions);
   if (fileUrl) {

@@ -139,7 +139,7 @@ export const getCardWithParentHtml = (user, isBold, id, showTable, row_column, b
     "background-size: 100% 120%; " +
     "background-position: center center; " +
     "background-color: rgba(255, 200, 11," +
-    (Math.random() * 0.7 + 0.25) +
+    (Math.random() * 0.5 + 0.25) +
     ");";
   }
 
@@ -215,7 +215,7 @@ export function shine(cardIndex, color) {
   let card = paramsFields.threeDCards[cardIndex].element ? paramsFields.threeDCards[cardIndex].element : paramsFields.threeDCards[cardIndex];
   // card.style.backgroundImage = "url(" + '../img/huawei.png' + ") no-repeat center center";
   card.style.backgroundColor =
-    color || "rgba(255, 200, 11," + (Math.random() * 0.7 + 0.25) + ")";
+    color || "rgba(255, 200, 11," + (Math.random() * 0.5 + 0.25) + ")";
 }
 /**
  * 切换名牌人员信息

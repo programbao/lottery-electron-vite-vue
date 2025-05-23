@@ -1,34 +1,5 @@
 {
-  "prizes": [
-    {
-      "type": "GPYbD20H2Efd1MQdcrMMq",
-      "eachCount": 1,
-      "name": "特等奖",
-      "count": 1,
-      "img": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/1734309594667_%E7%89%B9%E7%AD%89%E5%A5%96-%E5%8D%8E%E4%B8%BAmateX5.png"
-    },
-    {
-      "type": "CD0w_QiMz28jUVL77KyJ2",
-      "eachCount": 2,
-      "name": "一等奖",
-      "count": 2,
-      "img": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/1734309622354_%E4%B8%80%E7%AD%89%E5%A5%96-%E5%8D%8E%E4%B8%BAMateBook%20GT%2014.png"
-    },
-    {
-      "type": "aD7HgGyuZCTiKQEoRlB9T",
-      "eachCount": 2,
-      "name": "二等奖",
-      "count": 4,
-      "img": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/1734309636811_%E4%BA%8C%E7%AD%89%E5%A5%96-%E5%8D%8E%E4%B8%BAmatePad-pro.png"
-    },
-    {
-      "type": "EKqTkFARoG-4Q7ftoAueo",
-      "eachCount": 4,
-      "name": "三等奖",
-      "count": 8,
-      "img": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/1734309662169_%E4%B8%89%E7%AD%89%E5%A5%96-%E5%8D%8E%E4%B8%BA%E6%89%8B%E8%A1%A8.png"
-    }
-  ],
+  "prizes": [],
   "company": "IWIP",
   "beforeLotteryLayout": {
     "columnCount": 20,
@@ -42,11 +13,11 @@
   "cardConfigStyle": {
     "cardWidth": "3vw",
     "cardHeight": "6vh",
-    "logo": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/logo.png",
+    "logo": "",
     "companyTop": "0.05vh",
     "companyFontSize": "8px",
     "nameTop": "1.5vh",
-    "nameFontSize": "8px",
+    "nameFontSize": "12px",
     "detailsBottom": "0.1vh",
     "detailsFontSize": "8px",
     "imgWidth": "100%",
@@ -59,35 +30,21 @@
     "columnGap": "10px",
     "type": 1
   },
-  "groupList": [
-    {
-      "group_name": "1734309751786_users_template_2024_09_16.xlsx",
-      "fileUrl": "file:///D:/project/lottery-electron-vite-vue/electron/assets/xlsx_user/1734309751786_users_template_2024_09_16.xlsx",
-      "savePath": "D:\\project\\lottery-electron-vite-vue\\electron\\assets\\xlsx_user\\1734309751786_users_template_2024_09_16.xlsx",
-      "saveFolderPath": "D:\\project\\lottery-electron-vite-vue\\electron\\assets\\xlsx_user",
-      "group_identity": "users__QYJ1ZtaxXo3jqVc_9gB7",
-      "options": [
-        "GPYbD20H2Efd1MQdcrMMq",
-        "CD0w_QiMz28jUVL77KyJ2",
-        "aD7HgGyuZCTiKQEoRlB9T",
-        "EKqTkFARoG-4Q7ftoAueo"
-      ]
-    }
-  ],
+  "groupList": [],
   "otherResource": {
     "screenImg": {
-      "fileUrl": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/1734314492493_%E5%8C%BA%E5%9F%9F%E6%93%A6%E9%99%A4%E6%93%8D%E4%BD%9C(1).png",
-      "fileName": "1734314492493_区域擦除操作(1).png"
+      "fileUrl": "",
+      "fileName": "bg2.jpg"
     },
     "bgImg": {
-      "fileUrl": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/1734313449503_%E6%98%A5%E8%8A%82%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90.png",
-      "fileName": "1734313449503_春节图片生成.png"
+      "fileUrl": "",
+      "fileName": "bg1.jpg"
     },
     "musicFile": {
-      "fileUrl": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/1734066573803_Positive%20Rush%EF%BC%88%E5%89%AA%E8%BE%91%E3%80%81%E4%B8%8A%E3%80%81%E4%B8%8B%E5%9C%BA%EF%BC%89%E6%AC%A2%E5%BF%AB_%E7%88%B1%E7%BB%99%E7%BD%91_aigei_com.mp3",
-      "fileName": "1734066573803_Positive Rush（剪辑、上、下场）欢快_爱给网_aigei_com.mp3"
+      "fileUrl": "",
+      "fileName": "music.mp3"
     },
-    "bgImgMarkOpacity": "0.1"
+    "bgImgMarkOpacity": "0.3"
   },
   "secretPrizesGroupList": [],
   "secretUsers": [],
@@ -780,11 +737,11 @@
   "luckyCardConfigStyle": {
     "cardWidth": "16vw",
     "cardHeight": "24vh",
-    "logo": "file:///D:/project/lottery-electron-vite-vue/electron/assets/other_file/logo.png",
+    "logo": "f",
     "companyTop": "19px",
     "companyFontSize": "16px",
     "nameTop": "7vh",
-    "nameFontSize": "28px",
+    "nameFontSize": "30px",
     "detailsBottom": "1vh",
     "detailsFontSize": "22px",
     "imgWidth": "100%",

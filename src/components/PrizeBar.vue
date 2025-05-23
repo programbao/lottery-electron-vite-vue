@@ -12,62 +12,67 @@
         width: prizesBarStyle.barBoxWidth
       }"
       ref="prizeList">
-      <li 
-        v-for="item in prizes"
-        :key="item.type"
-        :id="'prize-item-' + item.type" 
-        :style="{
+      <!-- 'margin-bottom': prizesBarStyle.prizeSpace, -->
+      <!-- <div class="prize-list-content"> -->
+        <li
+            v-for="item in prizes"
+            :key="item.type"
+            :id="'prize-item-' + item.type"
+            :style="{
           width: prizesBarStyle.prizeBoxWidth,
           'min-height': prizesBarStyle.prizeBoxMinHeight,
-          'margin-bottom': prizesBarStyle.prizeSpace,
           'z-index': item.type == currentPrize.type && getItemPrizeConfig(item.type).activeClassName != 'done' && getItemPrizeConfig(item.type).surplusCount ? 1 : 0,
           'transform': item.type == currentPrize.type && getItemPrizeConfig(item.type).activeClassName != 'done' && getItemPrizeConfig(item.type).surplusCount ? `scale(${prizesBarStyle.currentPrizeScale})` : 'scale(1)',
         }"
-        :class="[
-          'prize-item', 
+            :class="[
+          'prize-item',
           item.type == currentPrize.type && getItemPrizeConfig(item.type).activeClassName != 'done' && getItemPrizeConfig(item.type).surplusCount ? 'shine' : '',
           getItemPrizeConfig(item.type).activeClassName == 'done' || !getItemPrizeConfig(item.type).surplusCount ? 'done' : ''
         ]">
-            <div 
+          <div
               :style="{
                 'width': prizesBarStyle.imgGutterWidth,
                 'height': prizesBarStyle.imgGutterHeight
               }"
               class="prize-img">
-                <img :src="item.img" :alt="item.otherName">
-            </div>
-            <div class="prize-text">
-              <h5 
+            <img :src="item.img" :alt="item.otherName">
+          </div>
+          <div class="prize-text">
+            <h5
                 :style="{
                   'font-size': prizesBarStyle.prizeFontSize
                 }"
                 class="prize-title">{{item.name}} {{item.otherName}}</h5>
-                <div class="prize-count">
-                    <div 
-                      class="progress"
-                      :style="{height: prizesBarStyle.progressHeight}">
-                        <div 
-                          :id="'prize-bar-' + item.type" 
-                          class="progress-bar progress-bar-danger progress-bar-striped active" 
-                          :style="{
+            <div class="prize-count">
+              <div
+                  class="progress"
+                  :style="{height: prizesBarStyle.progressHeight}">
+                <div
+                    :id="'prize-bar-' + item.type"
+                    class="progress-bar progress-bar-danger progress-bar-striped active"
+                    :style="{
                             width: (getItemPrizeConfig(item.type).surplusCount / item.count).toFixed(2) * 100 + '%',
                           }">
-                        </div>
-                    </div>
-                    <div 
-                      :id="'prize-count-' + item.type" 
-                      :style="{'font-size': prizesBarStyle.progressFontSize}"
-                      class="prize-count-left">
-                        {{getItemPrizeConfig(item.type).surplusCount + "/" + item.count}}
-                    </div>
                 </div>
+              </div>
+              <div
+                  :id="'prize-count-' + item.type"
+                  :style="{'font-size': prizesBarStyle.progressFontSize}"
+                  class="prize-count-left">
+                {{getItemPrizeConfig(item.type).surplusCount + "/" + item.count}}
+              </div>
             </div>
-        </li>`
+          </div>
+        </li>
+      <!-- </div> -->
+
     </ul>
     <div v-if="prizes.length" class="prize-mess">
-      <label id="prizeType" class="prize-shine" :class="{ 'shine-animation': currentPrize.type !== -1 }">{{currentPrize.name}}</label>
-      <label id="prizeText" class="prize-shine">{{currentPrize.otherName}}</label>
-      <label v-if="currentPrize.type !== -1">,剩余<label id="prizeLeft" class="prize-shine shine-animation">{{getItemPrizeConfig(currentPrize.type).surplusCount ?? 0}}</label>个</label>
+      <span :class="{ 'shine-animation': currentPrize.type !== -1 }">
+        <label id="prizeType" class="prize-shine">{{currentPrize.name}}</label>
+        <label id="prizeText" class="prize-shine">{{currentPrize.otherName}}</label>
+        <span v-if="currentPrize.type !== -1">,剩余<label id="prizeLeft" class="prize-shine shine-animation">{{getItemPrizeConfig(currentPrize.type).surplusCount ?? 0}}</label>个</span>
+      </span>
     </div>
   </div>
 </template>
@@ -122,15 +127,26 @@ const scrollTop = () => {
   nextTick(() => {
     if (!basicData.currentPrize) return
     const handleDom = prizeList.value;
-    const oldScrollTop = handleDom.scrollTop
-    const type = basicData.currentPrize.type
-    const scrollTop = document.querySelector(`#prize-item-${type}`).getBoundingClientRect().top - document.documentElement.clientHeight * 10.8 / 100 - 40 - oldScrollTop;
-    anime({
-      targets: handleDom,
-      scrollTop: [oldScrollTop, oldScrollTop + scrollTop],
-      duration: 2000,
-      easing: 'cubicBezier(0.17, 0.08, 0.25, 1.00)'
-    })
+    const type = basicData.currentPrize.type;
+    if (basicData.currentPrizeIndex === prizes.length - 1) {
+      document.querySelector(`#prize-item-${type}`)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      })
+      return
+    } else {
+      const oldScrollLeft = handleDom.scrollLeft;
+      const scrollLeft = document.querySelector(`#prize-item-${type}`).getBoundingClientRect().left - 40;
+      // setTimeout(() => {
+        anime({
+        targets: handleDom,
+        scrollLeft: [oldScrollLeft, scrollLeft],
+        duration: 2000,
+        easing: 'cubicBezier(0.17, 0.08, 0.25, 1.00)'
+      })
+      // }, 3000)
+    }
+    
   })
 }
 // 奖项配置
@@ -204,9 +220,12 @@ const initHandlePrizeData = (toInit = false) => {
         defaultClassName: "prize-item",
       }
     })
+    nextTick(() => {
+      scrollTop();
+    });
     if (needCount <= 0) return
     // 滚动位置
-    !toInit && scrollTop();
+    // !toInit && scrollTop();
     for (let i = 0; i < needCount + 1; i++) {
       let itemLucky = basicData.luckyUsers[prizes[needChangeIndex]["type"]]
       if (itemLucky === undefined) {
@@ -286,8 +305,10 @@ bus.on('setPrizeData', setPrizeData)
   // top: 1.2vh;
   z-index: 4;
   display: flex;
-  justify-content: center;
-  margin-top: 30px;
+  justify-content: space-between;
+  // overflow: hidden;
+  min-height: 20vh;
+  // margin-top: 30px;
 }
 
 .prize-mess {
@@ -295,7 +316,13 @@ bus.on('setPrizeData', setPrizeData)
   line-height: 5vh;
   font-size: 1.6vh;
   margin: 2.4vh 0;
-  flex: 1;
+  // flex: 1;
+  width: 27vw;
+  margin-right: 10px;
+  display: inline-block;
+  position: absolute;
+  right: 1vw;
+  top: 0;
 }
 
 .prize-shine {
@@ -307,22 +334,53 @@ bus.on('setPrizeData', setPrizeData)
 }
 .prize-list {
   // flex: 1;
+  // width: 70vw !important;
+  float: left;
   display: flex;
-  justify-content: right;
+  // align-items: center;
+  // justify-content: right;
+  // justify-content: flex-end;
+  white-space: nowrap;
   // position: fixed;
   // top: 10vh;
   // left: 20px;
   // height: 85vh;
-  overflow-y: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
   width: 25vw;
   padding: 0;
+  gap: 10px;
+  // margin-top: -5vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 15vh;
   // padding: 40px 0;
 }
+// .prize-list-content {
+//   display: flex;
+//   justify-content: flex-end;
+// }
 .prize-list::-webkit-scrollbar {
   display: none;
 }
+.prize-list:hover::-webkit-scrollbar {
+  display: block;
+}
+/* Webkit 浏览器的滚动条样式 */
+.prize-list::-webkit-scrollbar {
+  height: 8px; /* 横向滚动条高度 */
+  background: transparent;
+}
+
+.prize-list::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
 .prize-item {
+  flex: 0 0 auto;
   margin-left: 25px;
+  white-space: normal;
   // padding: 9px;
   // margin: 20px 0;
   display: flex;
@@ -338,6 +396,7 @@ bus.on('setPrizeData', setPrizeData)
   box-sizing: border-box;
   transition: transform 1s ease-in;
   position: relative;
+  // display: inline-block;
   &:last-child {
     // margin-bottom: 40px;
   }
@@ -363,7 +422,7 @@ bus.on('setPrizeData', setPrizeData)
     transform: scale(1); /* 初始大小 */
   }
   50% {
-    transform: scale(1.3); /* 放大到 1.2 倍 */
+    transform: scale(1.2); /* 放大到 1.2 倍 */
   }
   100% {
     transform: scale(1); /* 回到原始大小 */
@@ -390,6 +449,7 @@ bus.on('setPrizeData', setPrizeData)
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  object-fit: contain;
 }
 
 .prize-text {

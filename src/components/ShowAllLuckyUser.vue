@@ -123,6 +123,7 @@
 </template>
 
 <script setup>
+// import { ipcRenderer  } from 'electron'
 import { ref, watch, onMounted, onBeforeUnmount } from "vue";
 import { lotteryDataStore } from "../store";
 import bus from "../libs/bus";
@@ -166,7 +167,7 @@ watch(
         luckysRowColObj.value = basicData.luckysRowColObj;
         luckyCardConfigStyle.value = basicData.luckyCardConfigStyle;
         // $.confetti.setShowContentDom(confettiCanvasRef.value)
-        $.confetti.restart();
+        // $.confetti.restart();
         setTimeout(() => {
           autoScrollFn();
         }, 1000);
@@ -211,7 +212,7 @@ const lucksContentStyle = (currentLuckys) => {
 };
 const closeBtn = () => {
   basicData.isShowAllLuckyUser = false;
-  $.confetti.stop();
+  // $.confetti.stop();
 };
 // 自动滚动
 const autoScrollFn = (params) => {
@@ -267,19 +268,31 @@ const autoScrollFn = (params) => {
 
 onMounted(() => {
      //烟花效果
-const canvas = document.getElementById("fireworks_all");
- const stopFireworks =  canvasFireworks(canvas);
+  const canvas = document.getElementById("fireworks_all");
+  const fireworks =  canvasFireworks(canvas);
+  fireworks.start();
   luckyCardConfigStyle.value = basicData.luckyCardConfigStyle;
   bus.on("luckyCardConfigStyleSetting", () => {
     setTimeout(() => {
       luckyCardConfigStyle.value = basicData.luckyCardConfigStyle;
     }, 1100);
   });
-    // 在销毁时停止烟花和清理
-    onBeforeUnmount(() => {
-    if (stopFireworks) stopFireworks(); // 停止动画
+  // 在销毁时停止烟花和清理
+  onBeforeUnmount(() => {
+    // if (stopFireworks) stopFireworks(); // 停止动画
+    if (fireworks) fireworks.stop(); // 停止动画
     clearCanvas(canvas); // 清理 canvas
   });
+
+  // Listen for app focus and blur events
+  window.ipcRenderer.on('app-focus', (_event, ...args) => {
+    console.log('[fireworks.start]:', ...args)
+    fireworks.start();
+  })
+  window.ipcRenderer.on('app-blur', (_event, ...args) => {
+    console.log('[fireworks.stop]:', ...args)
+    fireworks.stop();
+  })
 });
 </script>
 

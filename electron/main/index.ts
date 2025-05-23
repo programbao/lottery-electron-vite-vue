@@ -135,6 +135,16 @@ async function createWindow() {
   win.on('closed', () => {
     win = null;
   });
+
+  // Send events to renderer process
+  win.on('focus', () => {
+    win.webContents.send('app-focus');
+  });
+
+  win.on('blur', () => {
+    win.webContents.send('app-blur');
+  });
+
   global.sharedObject.win = win;
 
   // 打开dialog

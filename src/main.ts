@@ -10,7 +10,7 @@ import { createPinia } from 'pinia'
 const app = createApp(App);
 const state = createPinia();
 const options = {
-  position: "top-right",
+  position: "center-right",
   timeout: 5000,
   closeOnClick: false,
   pauseOnFocusLoss: false,
